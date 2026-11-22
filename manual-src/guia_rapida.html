@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>WX3in1 Plus 2.0 – Guía rápida</title>
+<meta name="author" content="Manuel EA7JRS">
+<style>
+@page { size: A4; margin: 16mm 19mm 20mm 19mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Carlito", "Liberation Sans", sans-serif; font-size: 11.6pt; line-height: 1.28; color: #000; margin: 0; hyphens: auto; }
+p { margin: 0 0 0.35em 0; text-align: justify; }
+p.ind { text-indent: 2.2em; }
+h1, h2, h3 { background: #83caff; font-weight: normal; margin: 0.9em 0 0.35em 0; padding: 1px 4px; break-after: avoid; page-break-after: avoid; }
+h1 { font-size: 17.5pt; break-before: page; page-break-before: always; margin-top: 0; }
+h2 { font-size: 15pt; }
+h3 { font-size: 13pt; }
+h1.nobreak { break-before: auto; page-break-before: auto; }
+ul { margin: 0.2em 0 0.45em 0; padding-left: 2.4em; }
+ul ul { margin: 0.1em 0 0.1em 0; }
+li { text-align: justify; margin: 0.05em 0; }
+ol { margin: 0.2em 0 0.45em 0; padding-left: 2.4em; }
+.note { background: #e6e6e6; padding: 2px 4px; margin: 0.6em 0; text-align: justify; break-inside: avoid; }
+.warn { font-weight: normal; }
+b.f { font-weight: bold; }
+code, .mono { font-family: "Liberation Mono", "Courier New", monospace; font-size: 9.6pt; }
+.example { font-family: "Liberation Mono", monospace; font-size: 9.6pt; margin: 0.5em 0 0.5em 3em; }
+figure { margin: 0.6em 0 0.7em 0; text-align: center; break-inside: avoid; }
+figure img { max-width: 100%; }
+figure img.shot { width: 15.6cm; border: 0; }
+figcaption { font-size: 9pt; color: #333; margin-top: 2px; font-style: italic; }
+.new { display: inline-block; font-size: 8pt; font-weight: bold; color: #fff; background: #1a5d9a; border-radius: 3px; padding: 0 4px; margin-left: 6px; vertical-align: 2px; letter-spacing: .02em; }
+h1 .new, h2 .new, h3 .new { font-size: 8.5pt; vertical-align: 3px; }
+table.tp { border-collapse: collapse; width: 100%; margin: 0.4em 0; }
+table.tp td { border: 1px solid #000; padding: 1px 4px; font-size: 11pt; }
+table.grid { border-collapse: collapse; width: 100%; margin: 0.5em 0 0.7em 0; font-size: 10pt; line-height: 1.2; }
+table.grid th, table.grid td { border: 1px solid #8a8a8a; padding: 2px 4px; text-align: left; vertical-align: top; }
+table.grid th { background: #d9ecff; }
+table.grid tr { break-inside: avoid; }
+/* cover */
+.cover { text-align: center; height: 252mm; position: relative; break-after: page; }
+.cover .t1 { font-size: 27pt; font-weight: bold; margin-top: 6mm; }
+.cover .t2 { font-size: 12.5pt; margin-bottom: 7mm; }
+.cover .feat { font-size: 11.3pt; line-height: 1.22; text-transform: uppercase; }
+.cover .feat .new { text-transform: none; }
+.cover .t3 { font-size: 17pt; margin: 7mm 0 4mm; line-height: 1.25; }
+.cover .photo { width: 92mm; }
+.cover .credits { position: absolute; left: 14mm; bottom: 12mm; text-align: center; font-size: 11pt; line-height: 1.3; }
+.cover .marks { position: absolute; right: 6mm; bottom: 13mm; }
+.cover .marks img { height: 21mm; margin-left: 6mm; vertical-align: bottom; }
+.cover .rev { position: absolute; left: 0; right: 0; bottom: 0; font-size: 8.5pt; color: #444; }
+/* toc */
+#toc h1 { break-before: page; }
+.toc { font-size: 11.3pt; line-height: 1.32; }
+.toc div { display: flex; align-items: baseline; }
+.toc div span.n { white-space: nowrap; }
+.toc div span.d { flex: 1; border-bottom: 1px dotted #000; margin: 0 3px; transform: translateY(-3px); }
+.toc div span.p { min-width: 1.4em; text-align: right; }
+.toc .l2 { padding-left: 1.3em; }
+.toc .l3 { padding-left: 2.6em; }
+.small { font-size: 10pt; }
+.keep { break-inside: avoid; page-break-inside: avoid; }
+.keep > h2, .keep > h3 { margin-top: 0.9em; }
+.gtitle { border-bottom: 3px solid #83caff; margin-bottom: 0.6em; padding-bottom: 4px; }
+.gtitle .g1 { font-size: 20pt; font-weight: bold; }
+.gtitle .g2 { font-size: 10.5pt; color: #333; }
+h2 { font-size: 14pt; margin-top: 0.8em; }
+p, li { text-align: left; }
+.example { text-align: left; margin-left: 1.5em; }
+</style>
+</head>
+<body>
+<!-- Guía rápida WX3in1 Plus 2.0 (v1.13) - Copyright (C) 2026 Manuel - EA7JRS -->
+<div class="gtitle">
+  <div class="g1">WX3in1 Plus 2.0 · Guía rápida de puesta en marcha</div>
+  <div class="g2">Digipetidor e I-Gate APRS · firmware y Configurador v1.13 · Manuel EA7JRS · github.com/EA7JRS/wx3in1</div>
+</div>
+<p class="ind">Esta guía resume los pasos imprescindibles para poner en el aire un WX3in1 Plus 2.0 como digipetidor e I-Gate APRS fijo. Los detalles de cada campo están en el manual completo v1.13 (carpeta <code>docs/manual</code> del repositorio). Los nombres de los campos y botones del Configurador se dan en inglés, como aparecen en pantalla.</p>
+
+<h2 id="g1">1. Qué necesita</h2>
+<ul>
+  <li>El WX3in1 Plus 2.0, una fuente de 12 V CC (9 - 16 V, unos 150 mA) y un cable USB tipo impresora (A-B).</li>
+  <li>Una emisora de VHF FM en 144,800 MHz (frecuencia APRS de la Región 1 de la IARU) y un cable de radio con conector Mini DIN de 6 pines.</li>
+  <li>Un PC con Windows y el paquete oficial <i>wx3in1plus20_configurator_v113</i> de Microsat.</li>
+  <li>Conexión a Internet por cable Ethernet, si el equipo va a funcionar como I-Gate.</li>
+  <li>Opcional: Python 3 para usar la plantilla y la herramienta <code>wx3cfg</code> del repositorio.</li>
+</ul>
+
+<h2 id="g2">2. Cable de radio</h2>
+<table class="grid">
+<tr><th style="width:14%">Pin</th><th>Señal</th><th style="width:44%">Conexión</th></tr>
+<tr><td>2</td><td>Audio de salida APRS (hacia la radio)</td><td>Entrada de micrófono de la emisora</td></tr>
+<tr><td>4</td><td>Audio de entrada APRS (desde la radio)</td><td>Salida de altavoz o datos (9600/DATA si la tiene)</td></tr>
+<tr><td>5</td><td>Masa</td><td>Masa de la emisora</td></tr>
+<tr><td>6</td><td>PTT (cierra a masa al transmitir)</td><td>PTT de la emisora, si se usa “separate output”</td></tr>
+</table>
+<p>En portátiles que activan la transmisión con una resistencia de 2k2 en la línea de micrófono, conecte solo los pines 2, 4 y 5 y elija “PTT: 2k2 resistor”. El PTT es un MOSFET: no lo cortocircuite nunca con tensión positiva. Para 1200 baudios, el puente interno del filtro paso alto debe estar <b>abierto</b> (así viene de fábrica).</p>
+
+<h2 id="g3">3. Preparar la configuración</h2>
+<p><b>Opción A – con la plantilla del repositorio (recomendada).</b> La plantilla <code>config/wx3in1plus20_EA_plantilla.cfg</code> parte de la configuración por defecto v1.13 de Microsat con estos cambios: regla WIDEn-N limitada a n≤2, ruta polaca SP desactivada, servidores APRS-IS euro.aprs2.net y rotate.aprs2.net, NTP 0.es.pool.ntp.org, baliza cada 30 min por RF con ruta WIDE2-1, sin estación meteorológica, termómetro ni GPS, y mensajes de depuración desactivados. Complete sus datos con un solo comando:</p>
+<p class="example">python3 tools/wx3cfg.py fix config/wx3in1plus20_EA_plantilla.cfg \<br>&nbsp;&nbsp;-o mi_estacion.cfg --callsign EA7XXX-10 \<br>&nbsp;&nbsp;--lat 3631.20N --lon 00612.30W --random-passwords</p>
+<p>El comando pone el indicativo, la posición, el usuario y el passcode APRS-IS correctos, cambia las contraseñas admin/admin por otras aleatorias (las muestra una sola vez: apúntelas) y comprueba el resultado. Después revise el archivo con <code>python3 tools/wx3cfg.py check mi_estacion.cfg</code>; debe terminar con 0 errores.</p>
+<div class="keep"><p><b>Opción B – directamente en el Configurador.</b> Cambie como mínimo estos campos:</p>
+<table class="grid">
+<tr><th style="width:34%">Pestaña</th><th>Campo y valor</th></tr>
+<tr><td>Radio</td><td>“Callsign” y SSID (p. ej. -10 para un digi/I-Gate fijo); “Latitude” GGMM.mmN y “Longitude” GGGMM.mmW (minutos y centésimas de minuto, como en aprs.fi); “PTT” según su cable.</td></tr>
+<tr><td>Digipeater / PATH filter rules</td><td>Fila WIDE: “n&lt;=” en 2. Fila SP: “Enable if” en “Never” (ruta solo de Polonia).</td></tr>
+<tr><td>Beacons / Beacons 1-4</td><td>Baliza 1: “Path” WIDE2-1 y “RF[min]” entre 10 y 30.</td></tr>
+<tr><td>APRS-IS gateway / APRS-IS server</td><td>Servidor euro.aprs2.net; “login username” = indicativo-SSID; “login password” = passcode de su indicativo (<code>python3 tools/wx3cfg.py passcode EA7XXX</code>).</td></tr>
+<tr><td>RTC/NTP time</td><td>“NTP server”: 0.es.pool.ntp.org.</td></tr>
+<tr><td>Remote access / WWW y Telnet</td><td>Cambie usuario y contraseña admin/admin.</td></tr>
+<tr><td>Ext. interfaces / RS-232 ports</td><td>“None” en los puertos que no use.</td></tr>
+</table></div>
+
+<h2 id="g4">4. Escribir la configuración en el equipo</h2>
+<ol>
+  <li>Con el equipo apagado, conecte el cable USB al PC. Encienda el equipo: el LED “PC/PACKET” parpadea (modo de configuración). Windows lo detecta como dispositivo HID; no necesita controladores.</li>
+  <li>Abra el Configurador v1.13. Si avisa de “Uncompatible firmware version”, pulse “Upload firmware” y espere a que termine.</li>
+  <li>Pulse “Read from file” y cargue su archivo .cfg (o rellene los campos de la opción B).</li>
+  <li>Pulse “Write config”. Con “Upload PC system time on config write” marcado se envía también la hora del PC.</li>
+  <li>Desconecte el USB, apague y vuelva a encender el equipo: arranca en modo normal y el LED “Status” se enciende cada 3 segundos. Si todos los LED parpadean, la configuración no coincide con el firmware: repita los pasos 2 a 4.</li>
+</ol>
+
+<h2 id="g5">5. Ajustar los niveles de audio</h2>
+<p>Abra en el navegador <code>http://&lt;IP del equipo&gt;/</code> (la IP la da su router si usa DHCP).</p>
+<ul>
+  <li><b>Entrada:</b> en la página de ajuste de entrada, la ventana WX3in1 Oscilloscope y los niveles de los 10 últimos paquetes recibidos muestran si la señal es suficiente sin saturar. Ajuste el volumen de la radio o “Input amplifier” (Radio) hasta que los paquetes se decodifiquen de forma estable.</li>
+  <li><b>Salida:</b> la página de ajuste de salida emite tonos de 1200 Hz / 2200 Hz. Con ellos ajuste “Output level” para obtener la desviación habitual de APRS en su emisora (en torno a 3 kHz), sin saturar el micrófono.</li>
+  <li>“TX delay” de 250 ms funciona con la mayoría de emisoras; súbalo si los receptores pierden el inicio de sus paquetes.</li>
+</ul>
+
+<h2 id="g6">6. Comprobar que funciona</h2>
+<ul>
+  <li><b>Recepción:</b> el LED amarillo “RADIO RX” se enciende con señal y, poco después, el rojo “PC/PACKET” confirma un paquete correcto.</li>
+  <li><b>Telnet:</b> <code>telnet &lt;IP del equipo&gt;</code> (en Windows, PuTTY en modo Telnet). El comando <code>print stats</code> debe mostrar “APRS packet received (CRC OK)” distinto de cero. Con <code>help</code> se ve la lista de comandos y con <code>debug</code> se activan los mensajes de cada función.</li>
+  <li><b>APRS-IS:</b> en aprs.fi busque su indicativo-SSID. Si en telnet aparece un error de login, revise el usuario y el passcode.</li>
+  <li><b>Transmisión:</b> compruebe con una segunda radio que oye sus balizas, o desconecte un momento la red y mire en aprs.fi si otro I-Gate las recibe.</li>
+</ul>
+
+<h2 id="g7">7. Seguridad y mantenimiento</h2>
+<ul>
+  <li>No deje admin/admin en WWW, Telnet ni en el servidor APRS-IS simple. No abra Telnet ni la web a Internet si no es necesario.</li>
+  <li>El servidor APRS-IS simple con reenvío a T2/RF permite a cualquiera con la contraseña transmitir sin límites: déjelo desactivado si no lo necesita.</li>
+  <li>Guarde siempre la configuración con “Save to file”; al cambiar de versión del Configurador se vuelve a cargar con “Read from file”.</li>
+  <li>Para actualizar un equipo remoto use el archivo RUF por TFTP (capítulo 12 del manual), comprobando antes los ajustes de red.</li>
+</ul>
+
+<h2 id="g8">8. Problemas frecuentes</h2>
+<table class="grid">
+<tr><th style="width:36%">Síntoma</th><th>Qué revisar</th></tr>
+<tr><td>Todos los LED parpadean al encender</td><td>Versión de configuración distinta de la del firmware: “Upload firmware” y “Write config” con el mismo Configurador.</td></tr>
+<tr><td>No aparece en aprs.fi</td><td>Usuario APRS-IS = indicativo-SSID y passcode correcto (<code>wx3cfg check</code> lo comprueba); “Gateway” y “DNS” en la pestaña Network.</td></tr>
+<tr><td>(DNS) Server name nslookup timed out</td><td>IP del DNS incorrecta: use la del router o la de su proveedor.</td></tr>
+<tr><td>Recibe pero no transmite</td><td>Cable PTT, opción “PTT”, “Output level” y que la TX no esté desactivada en la página web de ajuste de salida.</td></tr>
+<tr><td>Recibe poco o nada</td><td>Nivel de entrada, puente paso alto abierto, “Baudrate” en 1200 / AFSK.</td></tr>
+<tr><td>Hora incorrecta</td><td>“Use NTP server” activado y DNS correcto; reinicie poco después de escribir la configuración.</td></tr>
+</table>
+<p class="note">Guía elaborada por Manuel EA7JRS a partir del manual del WX3in1 Plus 2.0 (Mateusz Płociński SQ3PLX / Microsat), actualizado a la v1.13. No es una publicación oficial de Microsat.</p>
+
+</body>
+</html>

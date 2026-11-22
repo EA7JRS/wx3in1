@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+manual-src/_render.html
+forms/
+*.exe
+*.ruf

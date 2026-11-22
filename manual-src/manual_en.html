@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WX3in1 Plus 2.0 (firmware v1.13) – Instruction manual</title>
+<meta name="author" content="Mateusz Płociński SQ3PLX / Microsat; v1.13 revision: Manuel EA7JRS">
+<style>
+@page { size: A4; margin: 16mm 19mm 20mm 19mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Carlito", "Liberation Sans", sans-serif; font-size: 11.6pt; line-height: 1.28; color: #000; margin: 0; hyphens: auto; }
+p { margin: 0 0 0.35em 0; text-align: justify; }
+p.ind { text-indent: 2.2em; }
+h1, h2, h3 { background: #83caff; font-weight: normal; margin: 0.9em 0 0.35em 0; padding: 1px 4px; break-after: avoid; page-break-after: avoid; }
+h1 { font-size: 17.5pt; break-before: page; page-break-before: always; margin-top: 0; }
+h2 { font-size: 15pt; }
+h3 { font-size: 13pt; }
+h1.nobreak { break-before: auto; page-break-before: auto; }
+ul { margin: 0.2em 0 0.45em 0; padding-left: 2.4em; }
+ul ul { margin: 0.1em 0 0.1em 0; }
+li { text-align: justify; margin: 0.05em 0; }
+ol { margin: 0.2em 0 0.45em 0; padding-left: 2.4em; }
+.note { background: #e6e6e6; padding: 2px 4px; margin: 0.6em 0; text-align: justify; break-inside: avoid; }
+.warn { font-weight: normal; }
+b.f { font-weight: bold; }
+code, .mono { font-family: "Liberation Mono", "Courier New", monospace; font-size: 9.6pt; }
+.example { font-family: "Liberation Mono", monospace; font-size: 9.6pt; margin: 0.5em 0 0.5em 3em; text-align: left; }
+figure { margin: 0.6em 0 0.7em 0; text-align: center; break-inside: avoid; }
+figure img { max-width: 100%; }
+figure img.shot { width: 15.6cm; border: 0; }
+figcaption { font-size: 9pt; color: #333; margin-top: 2px; font-style: italic; }
+.new { display: inline-block; font-size: 8pt; font-weight: bold; color: #fff; background: #1a5d9a; border-radius: 3px; padding: 0 4px; margin-left: 6px; vertical-align: 2px; letter-spacing: .02em; }
+h1 .new, h2 .new, h3 .new { font-size: 8.5pt; vertical-align: 3px; }
+table.tp { border-collapse: collapse; width: 100%; margin: 0.4em 0; }
+table.tp td { border: 1px solid #000; padding: 1px 4px; font-size: 11pt; }
+table.grid { border-collapse: collapse; width: 100%; margin: 0.5em 0 0.7em 0; font-size: 10pt; line-height: 1.2; }
+table.grid th, table.grid td { border: 1px solid #8a8a8a; padding: 2px 4px; text-align: left; vertical-align: top; }
+table.grid th { background: #d9ecff; }
+table.grid tr { break-inside: avoid; }
+/* cover */
+.cover { text-align: center; height: 252mm; position: relative; break-after: page; }
+.cover .t1 { font-size: 27pt; font-weight: bold; margin-top: 6mm; }
+.cover .t2 { font-size: 12.5pt; margin-bottom: 7mm; }
+.cover .feat { font-size: 11.3pt; line-height: 1.22; text-transform: uppercase; }
+.cover .feat .new { text-transform: none; }
+.cover .t3 { font-size: 17pt; margin: 7mm 0 4mm; line-height: 1.25; }
+.cover .photo { width: 92mm; }
+.cover .credits { position: absolute; left: 14mm; bottom: 12mm; text-align: center; font-size: 11pt; line-height: 1.3; }
+.cover .marks { position: absolute; right: 6mm; bottom: 13mm; }
+.cover .marks img { height: 21mm; margin-left: 6mm; vertical-align: bottom; }
+.cover .rev { position: absolute; left: 0; right: 0; bottom: 0; font-size: 8.5pt; color: #444; }
+/* toc */
+#toc h1 { break-before: page; }
+.toc { font-size: 11.3pt; line-height: 1.32; }
+.toc div { display: flex; align-items: baseline; }
+.toc div span.n { white-space: nowrap; }
+.toc div span.d { flex: 1; border-bottom: 1px dotted #000; margin: 0 3px; transform: translateY(-3px); }
+.toc div span.p { min-width: 1.4em; text-align: right; }
+.toc .l2 { padding-left: 1.3em; }
+.toc .l3 { padding-left: 2.6em; }
+.small { font-size: 10pt; }
+.keep { break-inside: avoid; page-break-inside: avoid; }
+.keep > h2, .keep > h3 { margin-top: 0.9em; }
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER ============================ -->
+<section class="cover">
+  <div class="t1">WX3IN1 Plus 2.0 (firmware v1.13)</div>
+  <div class="t2">(manual revision 5 November 2026, updated from revision 15 March 2016)</div>
+  <div class="feat">
+    APRS 1200 baud/AFSK and 9600/GMSK packet decoding/encoding<br>
+    APRS station and standalone digipeater<br>
+    APRS/RF to APRS-IS IGate<br>
+    APRS-IS to APRS/RF forwarding<br>
+    GPS module support for current position beaconing<br>
+    GPS SmartBeaconing position reports<br>
+    KISS protocol TNC via external Bluetooth interface<br>
+    KISS packet output and APRS-IS protocol simple TCP/IP server<br>
+    Weather station support<br>
+    WeatherUnderground service reporting<br>
+    External telemetry module support<br>
+    Input voltage measurement<br>
+    Digital thermometer input<br>
+    <br>
+    WWW interface for administration<br>
+    Telnet interface for monitoring<br>
+    NTP support for time synchronization<br>
+    Statistics upload to HTTP server<br>
+    Remote firmware update via TFTP
+  </div>
+  <div class="t3">Instruction manual<br>Configuration software manual</div>
+  <img class="photo" src="img/im-002.png" alt="WX3in1 Plus 2.0">
+  <div class="credits">Designer: Mateusz Płociński SQ3PLX<br>Producer: Microsat<br>info@microsat.com.pl</div>
+  <div class="marks"><img src="img/im-000.png" alt="WEEE"><img src="img/im-001.png" alt="CE"></div>
+  <div class="rev">Firmware v1.10–v1.13 update of this manual prepared by Manuel EA7JRS. This is not an official Microsat publication. · github.com/EA7JRS/wx3in1</div>
+</section>
+
+<!-- ============================ TOC ============================ -->
+<section id="toc">
+<h1 class="nobreak" style="break-before:page;page-break-before:always">Table of Contents</h1>
+<div class="toc" id="tocbody"><!--TOC--></div>
+</section>
+
+<!-- ============================ REVISION NOTES ============================ -->
+<h1 id="rev">About this revision</h1>
+<p class="ind">This revision updates the original WX3in1 Plus 2.0 manual (firmware v1.09, revision 15 March 2016) to <b>firmware and Configurator v1.13</b> (Configurator package <i>wx3in1plus20_configurator_v113</i>). Everything that was correct in the original manual has been kept. The changes are listed below.</p>
+<p><b>New or extended in this revision:</b></p>
+<ul>
+  <li>GPS SmartBeaconing and the new “GPS SmartBeaconing” Beacons sub-tab (firmware v1.12) – chapters 2.5 and 10.7.1,</li>
+  <li>“Enable if” conditions for beacons, including the new “No APRS-IS” condition (v1.10) – chapter 10.7,</li>
+  <li>Statistics upload (v1.10, experimental) – chapters 2.18 and 10.11.5,</li>
+  <li>Callsign filter extended from 10 to 20 entries (v1.11) – chapter 10.6.4,</li>
+  <li>APRS-IS packets to RF filter extended from 12 to 24 entries, with the “Bulletin” type described (v1.11) – chapter 10.9.5,</li>
+  <li>new internal telemetry sources and the 999 maximum for packet statistics (v1.12) – chapters 2.11 and 10.12.2,</li>
+  <li>Weather Underground fix (v1.13) – chapter 10.13.2,</li>
+  <li>WWW features added since v1.02 (oscilloscope, output tone generator, RF heard list, global TX off, callsign in the page title) – chapter 2.16,</li>
+  <li>WWW “Alternative logo password” field – chapter 10.11.1,</li>
+  <li>“Other” Tab with voltage measurement calibration (v1.07, not described before) – chapter 10.15,</li>
+  <li>RSS-131 gamma monitor settings and the <code>&lt;gamma&gt;</code> beacon string – chapters 10.7 and 10.14.7,</li>
+  <li>appendices with the firmware change history (A) and the Configurator value ranges (B).</li>
+</ul>
+<p><b>Corrections of the original text:</b></p>
+<ul>
+  <li>Latitude/longitude format: “YY” and “ZZ” are <i>minutes</i> and <i>hundredths of a minute</i>, not seconds (10.5),</li>
+  <li>area filter descriptions for “Area RAD1” and “Area RECT0” referred to RAD0 (10.6.2),</li>
+  <li>the n-N example used “N” instead of “n” (10.6.2),</li>
+  <li>the gamma monitor is named RSS-131 (it was written “RS-131”),</li>
+  <li>obsolete firmware file selection text removed from 10.3,</li>
+  <li>various typing errors.</li>
+</ul>
+<div class="note">Screenshots marked “Configurator v1.13 layout” were reconstructed from the form definitions stored inside the v1.13 Configurator executable and filled with its default configuration values. They show the real field names and positions of v1.13. All other screenshots were taken with Configurator v1.09 and are still valid for v1.13, because those Tabs did not change. Only the version number in their title bar is different.</div>
+<p>The sources of this manual, the <b>wx3cfg</b> tool that checks and fixes .cfg files with the same rules as Configurator v1.13, and a configuration template for Spanish (EA) stations are published at <b>https://github.com/EA7JRS/wx3in1</b>. Corrections and suggestions are welcome there.</p>
+
+<!-- ============================ 1 ============================ -->
+<h1 id="c1">1. Technical parameters</h1>
+<table class="tp">
+<tr><td style="width:38%">Dimensions</td><td>126x99x43 mm</td></tr>
+<tr><td>Weight</td><td>270g</td></tr>
+<tr><td>Supply voltage</td><td>12VDC typ. (9 - 16VDC)</td></tr>
+<tr><td>Power consumption</td><td>150mA</td></tr>
+<tr><td>Operation temperature</td><td>-20°C / +70°C</td></tr>
+<tr><td>Humidity</td><td>95% max.</td></tr>
+<tr><td>Ethernet</td><td>10/100 Base-T</td></tr>
+<tr><td>Power connector</td><td>5.5/2.1mm connector</td></tr>
+<tr><td>Telemetry module connector</td><td>Terminal block, RS-485 2-wire standard</td></tr>
+<tr><td>Thermometer connector</td><td>Terminal block, DS18B20/DS18S20 standard</td></tr>
+<tr><td>Serial ports connector</td><td>Mini DIN 6-pin, 2 ports, RS-232 standard</td></tr>
+<tr><td>Radio connector</td><td>Mini DIN 6-pin</td></tr>
+<tr><td>PC connector</td><td>USB-B (printer cable type)</td></tr>
+</table>
+
+<!-- ============================ 2 ============================ -->
+<h1 id="c2">2. Device features</h1>
+<h2 id="c2_1">2.1. APRS station</h2>
+<p class="ind">WX3in1 Plus 2.0 allows you to generate APRS data packets with information field defined by user and send them in a specified interval. In this way, it is possible to send beacons, objects, weather and telemetry data.</p>
+
+<h2 id="c2_2">2.2. APRS digipeater</h2>
+<p class="ind">The main purpose of the device is receiving and sending APRS data packets via amateur radio transceiver. WX3in1 Plus 2.0 is capable of receiving an APRS packet, decoding the sender, recipient, path and information field. Then actions are performed in accordance with the options configured by user:</p>
+<ul>
+  <li>Packet is digipeated via the APRS network,</li>
+  <li>Packet is sent to the APRS-IS server,</li>
+  <li>Packet is ignored if it was corrupted.</li>
+</ul>
+<p>Device firmware implements the following mechanisms:</p>
+<ul>
+  <li>Checksum Verification - packets with errors are ignored,</li>
+  <li>Anti-flood - packets repeated in a short time interval are not forwarded,</li>
+  <li>Path checking - a decision whether to digipeat a packet or not is made using a filter stored in configuration data of the device. User defines whether to forward WIDE1-1, WIDEn-N, SPn-N, or local path packets and the maximum value of N (so called New-N paradigm),</li>
+  <li>Area filter – allows to digipeat packets only from stations located within a defined radius from the device, within a defined radius from a point on the map or within a rectangle defined by north-western and south-eastern point on the map,</li>
+  <li>Callsign filter - a simple callsign filter (up to 20 entries) allows you to add stations to black list (these stations will be ignored) or white list (only these stations will be digipeated).</li>
+</ul>
+
+<h2 id="c2_3">2.3. RF -&gt; APRS-IS forwarding (I-Gate)</h2>
+<p class="ind">WX3in1 Plus 2.0 allows you to connect to APRS-IS server network. After logging to selected server, it is possible to gate data received from the APRS radio network. All packets with correct format and checksum are forwarded to APRS-IS.</p>
+
+<h2 id="c2_4">2.4. APRS-IS -&gt; RF forwarding</h2>
+<p class="ind">WX3in1 Plus 2.0 allows you to receive packets from APRS-IS server. Then a decision is made whether to gate a packet to RF or not. It is possible to forward different types of packets based on a filter defined in device configuration. APRS message packets can be forwarded to stations which were heard on RF within limited number of digi-hops (local RF), and they are repeated up to 3 times in case of no ACK packet received from message recipient.</p>
+
+<h2 id="c2_5">2.5. GPS module support</h2>
+<p class="ind">WX3in1 Plus 2.0 allows you to connect an optional GPS receiver module to report current position in APRS and APRS-IS beacons. Therefore it is possible to use it with a moving station and display a real-time position on the map.</p>
+<p class="ind">Starting with firmware v1.12 the device also supports <b>GPS SmartBeaconing</b><span class="new">v1.12</span>. With SmartBeaconing enabled, position reports are not sent at a fixed interval. The reporting rate follows the speed and the changes of course received from GPS: frequent reports when driving fast or turning, rare reports when stopped or moving slowly. Position reports can be encoded in Mic-E, plain text or Base-91 (compressed) format. See chapter 10.7.1 for configuration details.</p>
+
+<h2 id="c2_6">2.6. Bluetooth interface support and a KISS TNC operation</h2>
+<p class="ind">Firmware version 1.08 adds a functionality of a KISS protocol TNC allowing to forward received packets via optional Bluetooth interface connection to an external device (e.g. Android smartphone). It is also possible to receive packets from Bluetooth and send them to RF. Thereby it is now possible to use the device as a Bluetooth TNC.</p>
+<p class="ind">Tests were made with APRSDroid 1.3.0 giving a nice ability to show received packets on the application map and allowing to send packets from mobile phone to RF.</p>
+
+<h2 id="c2_7">2.7. KISS via TCP/IP packet output</h2>
+<p class="ind">This feature allows any networked device to connect to WX3in1 Plus 2.0 TCP/IP port and receive packets in KISS format without a need to use of a Bluetooth module. In firmware v1.13 KISS via TCP/IP is still only one direction (RF → TCP/IP), as stated in the Configurator. KISS via TCP/IP was successfully tested with APRSDroid 1.3.0.</p>
+
+<h2 id="c2_8">2.8. APRS-IS simple server</h2>
+<p class="ind">APRS-IS simple server allows any networked device to connect to WX3in1 Plus 2.0 TCP/IP port and receive packets in APRS-IS format. APRS-IS simple server connection is bi-directional (RF → TCP/IP, TCP/IP → RF) and it also allows to exchange packets with currently connected APRS-IS T2 server. This feature allows third-party software to use WX3in1 Plus 2.0 as a gateway between network and radio channel.</p>
+
+<h2 id="c2_9">2.9. Weather station support</h2>
+<p class="ind">WX3in1 Plus 2.0 allows you to receive weather information from weather stations using RS-232 cable. Data is then encoded into the APRS packet and may be sent to APRS/APRS-IS network at specified intervals.</p>
+<p>Supported weather stations:</p>
+<ul>
+  <li>LaCrosse/Technoline WS-2300,</li>
+  <li>LaCrosse/Technoline WS-2350,</li>
+  <li>Peet Bros Ultimeter 100,</li>
+  <li>Peet Bros Ultimeter 800,</li>
+  <li>Peet Bros Ultimeter 2000,</li>
+  <li>Peet Bros Ultimeter 2100,</li>
+  <li>Davis Vantage Pro (with RS232 datalogger),</li>
+  <li>Davis Vantage Pro2 (with RS232 datalogger),</li>
+  <li>Davis Vantage Pro Plus (with RS232 datalogger),</li>
+  <li>Davis Vantage Pro2 Plus (with RS232 datalogger).</li>
+</ul>
+
+<h2 id="c2_10">2.10. Weather Underground service support</h2>
+<p class="ind">Weather Underground is one of the biggest weather services available on the web. It allows you to create an account for your weather station and send weather reports which are stored in their database. Data is then available for view in form of graphs, tables or a simple web page applet showing current conditions in your location. Anyone can send his weather data using a simple internet protocol.</p>
+<p class="ind">In WX3in1 Plus 2.0 you can configure your Weather Underground account name, password and send weather data in preconfigured time intervals. You can also send your weather data in “rapid fire” mode every 5 seconds and see your weather changes realtime using Weather Underground web page applet.</p>
+<p class="ind">Firmware v1.13 contains a fix needed after changes Weather Underground made on their servers<span class="new">v1.13</span>. If your device uses an older firmware and stopped reporting to Weather Underground, update it to v1.13.</p>
+
+<h2 id="c2_11">2.11. Telemetry reports</h2>
+<p class="ind">Device allows you to send telemetry reports to APRS/APRS-IS network. Possible telemetry channels are:</p>
+<ul>
+  <li>input voltage,</li>
+  <li>received APRS packets in 1 hour or 10 minutes window,</li>
+  <li>digipeated APRS packets in 1 hour or 10 minutes window,</li>
+  <li>packet decoding efficiency in 1 hour window or in the whole range from device power-up,</li>
+  <li>ratio of digipeated to received packets, in 1 hour window or in the whole range from device power-up<span class="new">v1.12</span>,</li>
+  <li>ratio of digipeated packets to detected packet starts, in 1 hour window or in the whole range from device power-up<span class="new">v1.12</span>,</li>
+  <li>temperature from optional DS18B20 digital thermometer connected on the rear panel of the device.</li>
+</ul>
+<p>Starting with firmware v1.12 the maximum telemetry report value for packet statistics is 999 (it was 255 before).</p>
+
+<h2 id="c2_12">2.12. WXTelemetry module support (analog channels)</h2>
+<p class="ind">You can get more telemetry report options when using external WXTelemetry module. With WXTelemetry module you can measure and send following values:</p>
+<ul>
+  <li>two current measurement inputs,</li>
+  <li>two voltage measurement inputs,</li>
+  <li>DS18B20 digital thermometer input.</li>
+</ul>
+
+<h2 id="c2_13">2.13. WXBits telemetry module support (digital inputs/outputs)</h2>
+<p class="ind">You can use an additional WXBits module for reporting of digital input channels and administration of output channels. WXBits is a module which includes:</p>
+<ul>
+  <li>4 optocoupler digital inputs,</li>
+  <li>4 mosfet transistor open-collector outputs.</li>
+</ul>
+<p>States of both inputs and outputs can be reported in APRS telemetry reports and outputs can also be controlled with WX3in1 Plus 2.0 telnet interface.</p>
+
+<h2 id="c2_14">2.14. RTC clock and NTP time synchronization support</h2>
+<p class="ind">With WX3in1 Plus 2.0 you always have the current date and time thanks to NTP support. Device connects to a defined NTP server every few minutes and checks for the current time. Local passage of time is handled by on-board RTC clock with a battery.</p>
+
+<h2 id="c2_15">2.15. Firmware and configuration updates</h2>
+<p class="ind">In WX3in1 Plus 2.0 you can do all firmware and configuration updates over an USB cable connection from your PC using a simple Configurator application. If your device is located in a remote location, you can update firmware and configuration via the internet using TFTP protocol.</p>
+
+<h2 id="c2_16">2.16. Remote WWW access</h2>
+<p class="ind">With WX3in1 Plus 2.0 device it is possible to configure and view device statistics remotely via web browser. Since the v1.09 manual was written, the WWW interface offers the following tools:</p>
+<ul>
+  <li>input adjustment page with the WX3in1 Oscilloscope window and the input levels of the last 10 received packets (v1.02),</li>
+  <li>output adjustment page which sends a 1200 Hz / 2200 Hz tone pattern for deviation adjustment (v1.02),</li>
+  <li>device MAC address shown on the network settings page (v1.02),</li>
+  <li>advanced “RF heard stations” list (v1.03),</li>
+  <li>an option to turn off TX globally, in the output adjustment page (v1.09),</li>
+  <li>device callsign shown in the web page title (v1.10)<span class="new">v1.10</span>.</li>
+</ul>
+
+<h2 id="c2_17">2.17. Remote telnet access</h2>
+<p class="ind">You can connect to your WX3in1 Plus 2.0 device with a telnet client. Telnet connection allows you to check all device operation messages, read device statistics, send some test packets useful during installation, control digital outputs of WXBits module, and much more.</p>
+
+<h2 id="c2_18">2.18. Statistics upload <span class="new">NEW v1.10</span></h2>
+<p class="ind">Firmware v1.10 adds an experimental statistics upload feature. The device periodically sends its statistics to an HTTP server defined by the user (server name, port and path), identified with a numeric device ID. See chapter 10.11.5.</p>
+
+<!-- ============================ 3 ============================ -->
+<h1 id="c3">3. Connectors and device status leds</h1>
+<h2 id="c3_1">3.1. Front panel</h2>
+<p class="ind">There are 6 leds on the front panel which inform about the status of device operation. The following image shows the location of front panel LEDs and connectors.</p>
+<figure><img src="img/im-003.png" style="width:13.5cm" alt="Front panel"></figure>
+<p>Leds:</p>
+<ul>
+  <li><b>Radio TX</b> - The red led lights during transmission - the device sends an APRS data packet,</li>
+  <li><b>Radio RX</b> - Yellow led illuminates when receiving a signal from the radio (indicates the channel is busy),</li>
+  <li><b>Ext</b> - Green led indicates proper communication with external device, it blinks after reception of:
+    <ul><li>correct weather data from weather station,</li><li>GPS NMEA sentence with fixed position,</li><li>temperature from external sensor,</li><li>telemetry data from WXTelemetry/WXBits.</li></ul></li>
+  <li><b>Status</b> - Green led indicates the status of the device (led lights up regularly every 3 seconds, indicating correct operation),</li>
+  <li><b>Lan TX</b> - Blue led illuminates when sending TCP/IP packet to the Ethernet,</li>
+  <li><b>PC/Packet</b> – This red led has two purposes. In PC configuration mode it blinks regularly and in device working mode it blinks when there is a proper packet received from the radio.</li>
+</ul>
+<p>Connectors:</p>
+<ul>
+  <li><b>Ethernet</b> - RJ45 (ethernet network connection),</li>
+  <li><b>USB</b> - a USB socket-B (printer type), used to connect to a computer for configuration and firmware update.</li>
+</ul>
+
+<h2 id="c3_2">3.2. Rear panel</h2>
+<p>The following image shows the location of rear panel LEDs and connectors.</p>
+<figure><img src="img/im-004.png" style="width:13.5cm" alt="Rear panel"></figure>
+<p>Leds:</p>
+<ul><li><b>Power led</b> - The red led above the power connector indicates that the power is applied.</li></ul>
+<p>Connectors:</p>
+<ul>
+  <li><b>Power</b> – 5.5/2.1 type power connector (center pin is a power supply plus),</li>
+  <li><b>RS485</b> – terminal block connector for serial port for WXTelemetry/WXBits,</li>
+  <li><b>Thermo</b> – terminal block connector for DS18B20/DS18S20 connector,</li>
+  <li><b>Serial ports</b> – Mini DIN 6-pin connector for dual serial ports and 5V voltage output (the same pinout as PLXDigi/PLXTracker),</li>
+  <li><b>Radio connector</b> - Mini DIN 6-pin connector for radio audio in, audio out, GND, and PTT.</li>
+</ul>
+<p class="note"><b>Warning:</b> PTT switch is operated using MOSFET transistor. Please make sure that there are no short-circuits in radio cable. Shorting PTT output to positive voltage can result in transistor damage.</p>
+<p>Serial port 5V voltage output is protected with diode and polymer fuse. Maximum output current should not be above 100mA.</p>
+<p>If you are going to use both WXTelemetry and WXBits external telemetry modules, you should connect them in a chained style: A+ and B- pair go from WX3in1 to first telemetry module, and then from first telemetry module to the second one. From a schematic point of view, both modules must be connected in parallel (A+ from WX3in1 goes to A+ of the first module, and then to A+ of the second, similarly with B-). Never connect A+ to B-.</p>
+
+<!-- ============================ 4 ============================ -->
+<h1 id="c4">4. Radio connector</h1>
+<p class="ind">Radio MINI DIN 6pin connector is placed on the rear panel of WX3in1 Plus 2.0. Pinout of this connector is described in the following figure.</p>
+<figure><img src="img/im-005.png" style="width:9cm" alt="Radio connector pinout"></figure>
+<p>Connector pinout description:</p>
+<ol>
+  <li>not connected,</li>
+  <li>APRS audio output from the device to the microphone input of the radio. This output also acts as a PTT by shorting pin to ground through a 2k2 resistor - an option for portable radios that do not have a separate PTT input (selectable in configuration software, 2k2 resistor is built-in),</li>
+  <li>not connected,</li>
+  <li>APRS audio input from radio to WX3in1,</li>
+  <li>Ground pin,</li>
+  <li>PTT output - if the external PTT output is selected in device configuration, this pin is shorted to ground while broadcasting.</li>
+</ol>
+<p class="note"><b>Warning:</b> PTT switch is operated using MOSFET transistor. Please make sure that there are no short-circuits in radio cable. Shorting PTT output to positive voltage can result in transistor damage.</p>
+<p>For handheld radios which use 2k2 resistor on microphone input line you don't need to use any external resistor or external PTT (pin 6) output. Connect pins: 2 (audio output), 4 (audio input), 5 (ground) and set “PTT:” to “2k2 resistor” in device configuration. 2k2 resistor is located inside of the device.</p>
+
+<h2 id="c4_1">4.1. Audio output level regulation</h2>
+<p class="ind">In WX3in1 Plus 2.0, audio output is configured in software. Possible output level ranges from 40mV to 900mV with output impedance of around 500 Ohm. Since firmware v1.02 the WWW output adjustment page can send a 1200 Hz / 2200 Hz tone pattern, which makes deviation adjustment easier.</p>
+
+<h2 id="c4_2">4.2. Audio input level</h2>
+<p class="ind">In WX3in1 Plus 2.0 audio input level amplifier is configured in software. Default amplifier setting is configured to +0db and with this amplifier setting device should be able to decode packets with input levels as low as 25mV p-p and as high as 1V p-p. In case of low-level signals it is recommended to increase input amplifier settings for best decoding efficiency. The WWW input adjustment page (oscilloscope window and levels of the last 10 received packets) helps to find the best setting.</p>
+
+<h2 id="c4_3">4.3. High-pass filter jumper</h2>
+<p class="ind">There is only one jumper on a PCB inside of the device (located behind radio port connector). It should be open for proper operation of 1200/AFSK baudrate APRS decoding. If you are going to use 9600/GMSK packet decoding, then you should close this jumper (for flat frequency response down to DC). Closing this jumper may lead to poor 1200/AFSK baudrate decoding for some radios.</p>
+
+<!-- ============================ 5 ============================ -->
+<h1 id="c5">5. External devices connectors</h1>
+<h2 id="c5_1">5.1. RS-232 serial ports connector</h2>
+<p class="ind">In WX3in1 Plus 2.0 the MINI DIN 6pin female connector is used for RS-232 serial ports and 5V voltage output.</p>
+<figure><img src="img/im-006.png" style="width:5cm" alt="Serial port connector"></figure>
+<p>MINI DIN 6pin connector pins description:</p>
+<ul>
+  <li>Pin 6 – RS-232 Port 1 RXD (default: weather station),</li>
+  <li>Pin 4 – RS-232 Port 2 TXD (default: GPS module),</li>
+  <li>Pin 2 – GND,</li>
+  <li>Pin 1 – 5V output, do not short-circuit, max. current 100mA,</li>
+  <li>Pin 3 – RS-232 Port 1 TXD (default: weather station),</li>
+  <li>Pin 5 – RS-232 Port 2 RXD (default: GPS module).</li>
+</ul>
+<p>Serial port 5V voltage output is protected with diode and polymer fuse. Maximum output current should not be above 100mA.</p>
+<p>If Bluetooth interface support is enabled in device configuration, then RS-232 Port 2 is reserved for Bluetooth connection status check. In this case RS-232 Port 1 works with baudrate of 9600 for proper Bluetooth interface communication.</p>
+
+<h2 id="c5_2">5.2. RS-485 connector</h2>
+<p class="ind">RS-485 connector is intended to be used with WXTelemetry and WXBits external modules.</p>
+<p>If you are going to use both WXTelemetry and WXBits external telemetry modules, you should connect them in a chained style: A+ and B- pair go from WX3in1 to first telemetry module, and then from first telemetry module to the second one. From a schematic point of view, both modules must be connected in parallel (A+ from WX3in1 goes to A+ of the first module, and then to A+ of the second, similarly with B-). Never connect A+ to B-.</p>
+
+<h2 id="c5_3">5.3. Thermometer connector</h2>
+<p class="ind">Thermometer connector is intended to be used with DS18B20 or DS18S20 digital thermometer. It consists of:</p>
+<ul>
+  <li>5V voltage output (connect to VDD of thermometer),</li>
+  <li>DATA line (connect to DQ of thermometer),</li>
+  <li>GND (connect to GND of thermometer).</li>
+</ul>
+
+<!-- ============================ 6 ============================ -->
+<h1 id="c6">6. Connecting GPS receiver</h1>
+<p>WX3in1 Plus 2.0 serial port connector is compatible with our “GPS-RS232/Microsat - GPS receiver (minidin 6-pin)”. It can be connected directly without any additional adapters.</p>
+<p class="ind">You can use any GPS receiver with compatible pinout and current consumption below 100mA (below 60mA is recommended, as higher currents may cause a voltage drop below 5V on protection diode and polymer fuse which can prevent proper operation of GPS receiver).</p>
+<p class="ind">If you are going to use a GPS receiver from other manufacturer, it must provide GPRMC and GPGGA NMEA sentences for proper operation. Most modern GPS receivers and modules support these sentences. Serial port baudrate is selectable in WX3in1 Plus 2.0 configuration.</p>
+<p>Following lines of WX3in1 Plus 2.0 serial port are used for GPS data reception:</p>
+<ul><li>Pin 5 – RS-232 Port 2 RXD (data reception),</li><li>Pin 2 – GROUND.</li></ul>
+<p class="ind">Communication with GPS receiver is uni-directional (only data reception), so RS-232 Port 2 TXD is not used (although it is connected in some types of our pre-made cables).</p>
+<p>If you are going to use third-party GPS receiver, please make sure to power it with correct voltage (our GPS-RS232/Microsat receiver accepts input voltage up to 16VDC, most others accept only 5V +/- 10%) and make sure that it uses RS-232 voltage levels.</p>
+<p>If you want to connect both GPS receiver and weather station to WX3in1 Plus 2.0, please check more details in “Connecting the weather station” chapter.</p>
+<p>A connected GPS receiver can be used both for <code>&lt;gps…&gt;</code> beacon strings (chapter 10.7) and for GPS SmartBeaconing position reports (chapter 10.7.1).</p>
+<figure><img src="img/im-007.png" style="width:8cm" alt="GPS-RS232/Microsat"></figure>
+
+<!-- ============================ 7 ============================ -->
+<h1 id="c7">7. Connecting the weather station</h1>
+<h2 id="c7_1">7.1. LaCrosse/Technoline WS-2300, WS-2350 stations</h2>
+<p class="ind">The only difference between WS-2300 and WS-2350 weather stations is that manufacturer has made an external USB to RS232 adapter, which is not used in case of WX3in1 Plus 2.0.</p>
+<p class="ind">WS-23XX weather stations require a bit exotic connection method. There is no GND connection and both positive and negative 5V voltages are necessary for interfacing (-5V on DTR pin, and +5V on RTS pin). To connect WS-23XX weather station, we need to use WX3in1 Port 2 TXD as negative polarization voltage source on DTR pin.</p>
+<p>To connect WS-2300 or WS-2350 station to WX3in1 Plus 2.0 you will need to use:</p>
+<ul>
+  <li>“CAB02 - WX3in1 Plus 2.0/PLXDigi/PLXTracker serial interface cable (for WS-23XX)” – in case you don't want to connect also GPS receiver,</li>
+  <li>“CAB28 - WX3in1 Plus 2.0 serial interface cable (for WS-23XX + GPS)” – if you want to connect both weather station and GPS receiver.</li>
+</ul>
+<p>Schematics for both cables are available on our webpage.</p>
+<p>Firmware v1.05 contains rewritten WS-23XX support code, which fixes station hang-up problems reported with older firmware.</p>
+
+<h2 id="c7_2">7.2. Peet Bros Ultimeter stations</h2>
+<p class="ind">Peet Bros Ultimeter weather stations use a standard RS-232 serial port interface with TXD, RXD and GND. Other serial lines are not used. Stations must then be manually switched to "data logger" mode. According to the manufacturer's instructions, you should press CLEAR + WIND SPEED buttons for 3 seconds to activate the "data logger".</p>
+<p class="ind">Starting with firmware v1.09 it is also possible to use “complete record mode” which is properly decoded by WX3in1 Plus 2.0.</p>
+<p>To connect Peet Bros Ultimeter station to WX3in1 Plus 2.0 you will need to use:</p>
+<ul>
+  <li>“CAB29 - WX3in1 Plus 2.0 serial interface cable (for Davis, PeetBros)” – in case you don't want to connect also GPS receiver,</li>
+  <li>“CAB27 - WX3in1 Plus 2.0 serial interface cable (for Davis, PeetBros + GPS)” – if you want to connect both weather station and GPS receiver.</li>
+</ul>
+<p>Schematics for both cables are available on our webpage.</p>
+
+<h2 id="c7_3">7.3. Davis Vantage stations</h2>
+<p class="ind">Davis Vantage weather stations use a standard RS-232 serial port interface with TXD, RXD and GND. Fourth wire is connected to DCD, DTR, and DSR inside original DB-9 connector but it shouldn't be used on WX3in1 Plus 2.0 side.</p>
+<p class="ind">To connect WX3in1 Plus 2.0 to Davis weather stations you need to use an additional RS-232 “datalogger” interface available from the manufacturer. Device part number is 06510SER.</p>
+<p>Davis stations datalogger interface comes in two kinds: “standard” datalogger or “APRS” datalogger. According to my current knowledge, both types work fine with WX3in1 Plus 2.0 (it doesn't use an “APRS” feature of datalogger but “APRS” datalogger has also the same communication options like “standard” one).</p>
+<p>To connect Davis Vantage station to WX3in1 Plus 2.0 you will need to use:</p>
+<ul>
+  <li>“CAB29 - WX3in1 Plus 2.0 serial interface cable (for Davis, PeetBros)” – in case you don't want to connect also GPS receiver,</li>
+  <li>“CAB27 - WX3in1 Plus 2.0 serial interface cable (for Davis, PeetBros + GPS)” – if you want to connect both weather station and GPS receiver.</li>
+</ul>
+<p>Schematics for both cables are available on our webpage.</p>
+
+<!-- ============================ 8 ============================ -->
+<h1 id="c8">8. Connecting Bluetooth interface</h1>
+<p>WX3in1 Plus 2.0 serial port connector is compatible with our “BT/Microsat - Bluetooth interface (minidin 6-pin)”. It can be connected directly without any additional adapters.</p>
+<p class="ind">Bluetooth interface allows you to use your smartphone, tablet, or any other Bluetooth device to connect to WX3in1 Plus 2.0. All you need is an application supporting KISS protocol. In our tests we used APRSDroid 1.3.0 which allows to receive packets from the device and plot them on a map. Application allows also to send position packets using SmartBeaconing feature changing your WX3in1 Plus 2.0 into an APRS tracker.</p>
+<p>BT/Microsat – Bluetooth interface reserves both WX3in1 Plus 2.0 serial ports, therefore it is not possible to use any other serial device when Bluetooth is connected.</p>
+<p>Since firmware v1.12 the device has its own GPS SmartBeaconing (chapter 10.7.1). It needs a GPS receiver on a serial port, so it cannot be used together with the Bluetooth interface. With Bluetooth, SmartBeaconing is done by the application on the phone, as described above.</p>
+<figure><img src="img/im-008.png" style="width:8cm" alt="BT/Microsat"></figure>
+
+<!-- ============================ 9 ============================ -->
+<h1 id="c9">9. Connecting to PC</h1>
+<p class="ind">Initial configuration of WX3in1 Plus 2.0 should be done via USB interface with WX3in1 Plus 2.0 Configurator software.</p>
+<p class="ind">WX3in1 Plus 2.0 enters into configuration mode only when USB cable is detected while powering up and it is indicated by “PC/PACKET” led blinking.</p>
+<p>To connect to your computer, follow these steps:</p>
+<ul>
+  <li>Power off the WX3in1 Plus 2.0 device,</li>
+  <li>Connect the USB cable to your computer,</li>
+  <li>Power on the WX3in1 Plus 2.0 device,</li>
+  <li>Turn on the Configurator application.</li>
+</ul>
+<p>After connecting and powering, WX3in1 Plus 2.0 is detected in Windows as a new USB-HID device (USB VID 0483, PID A124).</p>
+<p class="note">Please remember to disconnect the device from USB and cycle power after configuration. Device will not operate when USB cable is connected after reboot, USB is used only for configuration and firmware update.</p>
+<p>No device drivers are necessary because standard HID support is present in all Windows operating systems.</p>
+<p class="ind">Now you can simply use WX3in1 Plus 2.0 Configurator application to read, modify, write configuration to the device. The following image shows the application window.</p>
+<figure><img class="shot" src="img/v113_radio.png" alt="Configurator main window"><figcaption>Configurator v1.13 layout (reconstructed)</figcaption></figure>
+
+<!-- ============================ 10 ============================ -->
+<h1 id="c10">10. Description of configuration software</h1>
+<p class="ind">In this chapter we will discuss all the Configurator application settings and describe its influence on the device operation. The value ranges accepted by the Configurator are listed in Appendix B.</p>
+
+<h2 id="c10_1">10.1. Reading configuration from the device</h2>
+<p class="ind">To read the configuration from the device you must use the “Read config” button. After this action, the program will download current configuration values from WX3in1 Plus 2.0 internal memory.</p>
+
+<h2 id="c10_2">10.2. Writing configuration to the device</h2>
+<p class="ind">After entering configuration values in Configurator application, choose “Write config” to upload current configuration to WX3in1 Plus 2.0 internal memory.</p>
+
+<h2 id="c10_3">10.3. Firmware update</h2>
+<p class="ind">If you download a new WX3in1 Plus 2.0 Configurator application version, you should also update device firmware to be compatible with current Configurator version.</p>
+<p class="ind">Starting with version 1.01, WX3in1 Plus 2.0 firmware is merged into the Configurator executable, so there is no separate firmware file. To update firmware of the device, please click on the “Upload firmware” button. Firmware update starts automatically. Then wait for the update to complete.</p>
+<p>Don't worry, it is not possible to “brick” or damage the device with this operation. If anything goes bad, you will simply need to try again with firmware update function.</p>
+<p>Please remember that you should update your device with the same Configurator and firmware version numbers. It is also always necessary to upload new configuration after flashing the device with new firmware versions. The device will not start if configuration and firmware versions do not match. If your device simply blinks all the leds when powered up, it means that your configuration version does not match firmware version. If the device firmware version does not match the Configurator version, the Configurator shows the message “Uncompatible firmware version” with both version numbers and asks you to use the “Upload firmware” button.</p>
+
+<h2 id="c10_4">10.4. Configuration import/export</h2>
+<p class="ind">With “Save to file” button you can export your current configuration from WX3in1 Plus 2.0 Configurator window to a file on your PC's disk drive. Similarly with “Read from file” button you can import configuration from a file to your WX3in1 Plus 2.0 Configurator application. These functions can be used to save your device's configuration and to transfer your device's configuration to recent Configurator and firmware versions.</p>
+<p>Configuration files (*.cfg) are text files. Some configuration fields may change between firmware versions, so please check all Tabs after importing a file saved with an older Configurator version.</p>
+
+<h2 id="c10_5">10.5. Radio Tab</h2>
+<figure><img class="shot" src="img/im-009.png" alt="Radio Tab"></figure>
+<ul>
+  <li><b>“Callsign”</b> – the callsign of your station with SSID extension. This field can be up to 6 characters long. The default SSID is 0 and allowed SSID's are between 0 and 15,</li>
+  <li><b>“Latitude”</b> - north-south position of your radio station,</li>
+  <li><b>“Longitude”</b> - east-west position of your radio station.</li>
+</ul>
+<p>For APRS beacons latitude is encoded as “XXYY.ZZD” where XX are degrees, YY are minutes (1/60 of a degree), ZZ are hundredths of a minute, D can be N for north or S for south.</p>
+<p>Longitude is encoded as “XXXYY.ZZD” where XXX are degrees, YY are minutes (1/60 of a degree), ZZ are hundredths of a minute, D can be E for east or W for west.</p>
+<p>Example: 52°22.0′ N, 16°53.6′ E is written as <code>5222.00N</code> and <code>01653.60E</code>. You can easily find your coordinates in APRS format on aprs.fi map, they are displayed in upper-left corner of the screen.</p>
+<ul>
+  <li><b>“TX delay (ms)”</b> – delay time in milliseconds for sending an APRS packet. It is the length of preamble sent before packet and necessary for radio receivers to synchronize with our packet. The recommended value is not less than 250ms,</li>
+  <li><b>“Quiet time (ms)”</b> – minimum time off after the radio channel is busy. After this time next packet can be sent from the transmit buffer,</li>
+  <li><b>“Randomize quiet time”</b> - this option adds some randomization to Quiet time value which changes every packet sent with a range selected in this box,</li>
+  <li><b>“PTT”</b> – push-to-talk output selection, we can choose between two options:
+    <ul><li><b>“separate output”</b> – PTT output pin is shorted to ground while broadcasting,</li>
+        <li><b>“2k2 resistor”</b> - audio output is shorted to ground via 2k2 Ohm resistor, function used in some handheld radios for transmission enable,</li></ul></li>
+  <li><b>“Squelch level”</b> - this a squelch level selection, with lower values usable signal will be detected with lower signal amplitude. Default value of 1 should be the best option,</li>
+  <li><b>“Channel busy detect”</b> - this option selects if channel busy is detected by input signal amplitude (<b>“analog signal level”</b>) or with proper packet start detection (<b>“digital detect”</b>). The second option allows to work with open-squelch on the radio, but it can lead to some packet collisions. The first option is default and should be used in most cases,</li>
+  <li><b>“Consecutive packet send”</b> - this option will make your device send all the packets from TX queue one after another without any delays (<b>“in bursts”</b>), or with TX delay, Quiet time, and channel busy detection between every packet (<b>“separately”</b>). The first one is default and used by most APRS devices,</li>
+  <li><b>“Baudrate”</b> - allows to select packet decoding/encoding method. In most cases 1200/AFSK is used. Please do not select 9600/GMSK if you do not know what you are doing (see also chapter 4.3),</li>
+  <li><b>“Output level”</b> - this option selects level of audio output signal from WX3in1 Plus 2.0 to radio,</li>
+  <li><b>“Input amplifier”</b> - this option selects amplification of input signal from radio to WX3in1 Plus 2.0.</li>
+</ul>
+<p class="note">If you are new to APRS or if you are running the device for the first time, you should change Callsign, Latitude and Longitude field to proper values for your station. These fields are important. You should also change PTT option to be compatible with your radio connection. Other options can be left unchanged as default values should work fine.</p>
+
+<h2 id="c10_6">10.6. Digipeater Tab</h2>
+<p class="ind">Digipeater Tab contains several sub-tabs allowing to configure different digipeater options and filters. We will discuss all of them below.</p>
+
+<h3 id="c10_6_1">10.6.1. Digipeater / Common settings</h3>
+<figure><img class="shot" src="img/im-010.png" alt="Common settings"></figure>
+<ul>
+  <li><b>“Digipeater on”</b> – Enables or disables a function of RF APRS packets digipeating,</li>
+  <li><b>“Duplicate checking (s)”</b> – Time in seconds after which the next packet will be forwarded, if it has the same content as the previous one. This function allows you to ignore stations, which are flooding the network and also to ignore packets which were heard a while before and are heard again after being digipeated by other stations.</li>
+</ul>
+
+<h3 id="c10_6_2">10.6.2. Digipeater / PATH filter rule</h3>
+<p class="ind">Here you can insert New-N Paradigm paths to be handled by WX3in1 Plus 2.0 digipeater function.</p>
+<figure><img class="shot" src="img/im-011.png" alt="PATH filter rules"></figure>
+<ul>
+  <li><b>“Path (n-N)”</b> – path name, WIDE, SP, etc.</li>
+  <li><b>“n&gt;=”</b> and <b>“n&lt;=”</b> – minimum and maximum n for path to be forwarded, for example WIDEn-N with n&gt;=1 and n&lt;=3 will forward paths: WIDE3-3, WIDE3-2, WIDE3-1, WIDE2-2, WIDE2-1, WIDE1-1,</li>
+  <li><b>“Traceable”</b> – if Yes, WX3in1 will add its own callsign to the path, if No, it will not do that,</li>
+  <li><b>“Enable if”</b> – path filter rule can be disabled (Never), enabled (Always), or enabled only when there is no APRS-IS connection (No APRS-IS),</li>
+  <li><b>“Direct only”</b> - packet will be digipeated only if there is no other digipeater callsign in its path (it was not digipeated by any other station before reaching us),</li>
+  <li><b>“Area ALL”</b> - means that packets will be digipeated without area limit, no matter where the source station is located,</li>
+  <li><b>“Area RAD0”</b> - packet will only be digipeated if it is located within RAD0 area (described below),</li>
+  <li><b>“Area RAD1”</b> - packet will only be digipeated if it is located within RAD1 area (described below),</li>
+  <li><b>“Area RECT0”</b> - packet will only be digipeated if it is located within RECT0 area (described below).</li>
+</ul>
+<p>If you are not going to use area filters, then you need to leave “Area ALL” box checked to allow digipeating of all packets independently of their source station location.</p>
+<p class="note">The default rules accept n up to 7. In most APRS networks today the recommended maximum is n=2 (WIDE2-2), so you may want to set “n&lt;=” to 2 for the WIDE rule. Please follow the recommendations of your local APRS network.</p>
+
+<h3 id="c10_6_3">10.6.3. Digipeater / PATH filter areas</h3>
+<p class="ind">Here you can define area filters, which limit packet digipeating depending on origin station location. There are three different filters.</p>
+<figure><img class="shot" src="img/im-012.png" alt="PATH filter areas"></figure>
+<ul>
+  <li><b>“area RAD0”</b> - which is an area within a limited radius from our station location (our station's location is defined in “Radio Tab”),</li>
+  <li><b>“area RAD1”</b> - which is an area within a limited radius from a point on the map defined by its latitude and longitude,</li>
+  <li><b>“area RECT0”</b> - which is a rectangle area defined by north-western and south-eastern points on the map (using appropriate latitude and longitude for each point).</li>
+</ul>
+<p>Area filters only support the static latitude/longitude defined in Radio Tab (not the GPS-based position). Distances are entered in kilometers (1 - 3000 km).</p>
+
+<h3 id="c10_6_4">10.6.4. Digipeater / Callsign filter rules <span class="new">20 entries since v1.11</span></h3>
+<figure><img class="shot" src="img/v113_callsign_filter.png" alt="CALLSIGN filter rules"><figcaption>Configurator v1.13 layout (reconstructed) – 20 callsign entries</figcaption></figure>
+<p>The callsign filter works as:</p>
+<ul>
+  <li><b>“black list”</b> (“General rule:” set to “Allow all, except below” - all callsigns will be digipeated except listed below), or</li>
+  <li><b>“white list”</b> (“General rule:” set to “Deny all, except below” - only callsigns listed below will be digipeated).</li>
+</ul>
+<p>Since firmware v1.11 the list has 20 entries (10 in older versions). Each entry has a callsign (up to 6 characters) and an SSID (0 - 15, or <code>*</code> for any SSID). In the callsign field the <code>*</code> wildcard masks all characters to the end of the pattern, and the <code>?</code> wildcard (since v1.07) masks a single character (except space).</p>
+<p class="note">If you are new to APRS or if you are running the device for the first time, you can leave all the options as default. By default, the device will digipeat all packets with WIDEn-N string in path and also local Polish SPn-N string (if you are not from Poland you can remove SP from the second row, it is placed here as an example of a local New-N path).</p>
+
+<h2 id="c10_7">10.7. Beacons Tab</h2>
+<p class="ind">Beacons Tab has three sub-tabs: “Beacons 1-4”, “Beacons 5-8” and, since firmware v1.12, “GPS SmartBeaconing” (chapter 10.7.1).</p>
+<figure><img class="shot" src="img/v113_beacons14.png" alt="Beacons Tab"><figcaption>Configurator v1.13 layout (reconstructed)</figcaption></figure>
+<ul>
+  <li><b>“Dest”</b> – destination field of a beacon packet. It would be best to leave it default which will allow your device to be recognized as WX3in1 Plus 2.0 (and added to working stations callsign list on my webpage),</li>
+  <li><b>“Path”</b> – APRS path (default value of WIDE2-2 will allow your device to be digipeated by most nearby digipeaters), if you leave this field empty, beacon will be sent without path,</li>
+  <li><b>“RF[min]“</b> – beacon transmit rate to RF (expressed in minutes, 5 - 1440), beacon will not be sent if this field is set to 0,</li>
+  <li><b>“IS[min]“</b> – beacon transmit rate to APRS-IS (expressed in minutes, 5 - 1440), beacon will not be sent if this field is set to 0,</li>
+  <li><b>“Enable if”</b><span class="new">“No APRS-IS” since v1.10</span> – condition under which the beacon is sent:
+    <ul>
+      <li><b>“Never”</b> – beacon is disabled,</li>
+      <li><b>“Always”</b> – beacon is always enabled,</li>
+      <li><b>“GPS fixed”</b> – beacon is sent only when the GPS receiver has a valid position fix (useful for beacons with <code>&lt;gpslat&gt;</code>/<code>&lt;gpslong&gt;</code>),</li>
+      <li><b>“GPS not fixed”</b> – beacon is sent only when there is no valid GPS fix (e.g. a fallback beacon with the static position from Radio Tab),</li>
+      <li><b>“No APRS-IS”</b> – beacon is sent only when there is no APRS-IS connection,</li>
+    </ul></li>
+  <li><b>“Message“</b> – APRS packet information field content (up to 95 characters). Beacon will not be sent if this field is left empty.</li>
+</ul>
+<p>To properly generate a message field structure, please read the information on the APRS packet format.</p>
+<p>Example beacon packet:</p>
+<p class="example">@&lt;date&gt;z&lt;lat&gt;/&lt;long&gt;-WX3in1Plus2.0 U=&lt;volt&gt;V,T=&lt;temp&gt;C</p>
+<ul>
+  <li>@ - APRS data ID,</li>
+  <li>&lt;date&gt;z – time and date in the format DDHHMM (day/hour/minute),</li>
+  <li>&lt;lat&gt;/&lt;long&gt; - station latitude and longitude,</li>
+  <li>„-” - together with “/” sign between &lt;lat&gt; and &lt;long&gt; defines a station symbol (House in this example), please refer to the table of symbols at http://aprs.pl/ikony.htm,</li>
+  <li>WX3in1Plus2.0 U=&lt;volt&gt;V,T=&lt;temp&gt;C – beacon information field, &lt;volt&gt; will be replaced with input voltage reading, &lt;temp&gt; will be replaced with temperature from external temperature sensor.</li>
+</ul>
+<p>As you can see in the above example, WX3in1 Plus 2.0 allows to use some special strings, which are automatically replaced with corresponding values. The full list is also shown in the Configurator after clicking the “Special strings” button:</p>
+<ul>
+  <li><code>&lt;date&gt;</code> - inserts current date in DDHHMM (day/hour/minute) format,</li>
+  <li><code>&lt;lat&gt;</code> - inserts your stations latitude defined in “Radio” Tab,</li>
+  <li><code>&lt;long&gt;</code> - inserts your stations longitude defined in “Radio” Tab,</li>
+  <li><code>&lt;gpslat&gt;</code> - inserts latitude received from GPS,</li>
+  <li><code>&lt;gpslong&gt;</code> - inserts longitude received from GPS,</li>
+  <li><code>&lt;gpsdate&gt;</code> - inserts time received from GPS in format: DDHHMM,</li>
+  <li><code>&lt;volt&gt;</code> - inserts measured input voltage,</li>
+  <li><code>&lt;temp&gt;</code> - inserts temperature from rear panel thermometer input (Celsius),</li>
+  <li><code>&lt;tempf&gt;</code> - inserts temperature from rear panel thermometer input (Fahrenheit),</li>
+  <li><code>&lt;gamma&gt;</code> - inserts gamma radiation from RSS-131 gamma monitor.</li>
+</ul>
+<figure><img src="img/v113_special_strings.png" style="width:9.5cm" alt="Beacon special strings"><figcaption>“Special strings” window, Configurator v1.13 layout (reconstructed)</figcaption></figure>
+<p>After inserting corresponding values example beacon packet will look for example like that:</p>
+<p class="example">@100214z5221.60N/01653.63E-WX3in1Plus2.0 U=12.1V,T=21.0C</p>
+<p><b>Important note:</b> Sometimes I see that users try to replace special &lt;date&gt;, &lt;lat&gt;, &lt;long&gt;, &lt;volt&gt; strings with direct values. You don't need to do that. If you set for example “&lt;date&gt;” string in your beacon, current date will be placed instead of this string. The same for “&lt;lat&gt;”, “&lt;long&gt;”, “&lt;volt&gt;”, etc.</p>
+<p class="note">If you are new to APRS or if you are running the device for the first time, you can leave all the options as default. By default, the device will send standard beacon packet with time, latitude, longitude and current voltage reading both to RF and APRS-IS every 5 minutes. It should make your station appear on the map on aprs.fi.</p>
+
+<h3 id="c10_7_1">10.7.1. Beacons / GPS SmartBeaconing <span class="new">NEW v1.12</span></h3>
+<figure><img class="shot" src="img/v113_smartbeaconing.png" alt="GPS SmartBeaconing"><figcaption>Configurator v1.13 layout (reconstructed) – default values</figcaption></figure>
+<p class="ind">This sub-tab configures position reports generated from the GPS receiver connected to a serial port (see chapter 6 and chapter 10.14.5). These reports are independent from Beacons 1-8.</p>
+<ul>
+  <li><b>“SmartBeaconing”</b> – “Enabled” or “Disabled”, enables GPS SmartBeaconing position reports,</li>
+  <li><b>“Position encoding protocol”</b> – format of the position report:
+    <ul>
+      <li><b>“Mic-E”</b> – the most compact format, position, course and speed are encoded in the destination field and the information field,</li>
+      <li><b>“Plain text”</b> – standard uncompressed APRS position report (DDMM.MM format),</li>
+      <li><b>“Base-91”</b> – compressed APRS position report,</li>
+    </ul></li>
+</ul>
+<p><b>“SmartBeaconing settings”</b> group:</p>
+<ul>
+  <li><b>“Slow Speed [km/h]”</b> and <b>“Slow Period [s]”</b> – below the slow speed a report is sent every slow period,</li>
+  <li><b>“Fast Speed [km/h]”</b> and <b>“Fast Period [s]”</b> – above the fast speed a report is sent every fast period. Between slow and fast speed the reporting interval changes with the speed,</li>
+  <li><b>“Min Turn Angle [deg]”</b>, <b>“Turn Slope”</b> and <b>“Min Turn Time [s]”</b> – “corner pegging” settings of the standard SmartBeaconing algorithm. An extra report is sent when the course changes by more than the turn threshold, which is the minimum turn angle plus the turn slope divided by the current speed (the threshold is bigger at low speed). Turn reports are never sent more often than the minimum turn time.</li>
+</ul>
+<p>Default values are: Min Turn Angle 27°, Turn Slope 410, Min Turn Time 5 s, Slow Speed 8 km/h, Slow Period 1800 s, Fast Speed 95 km/h, Fast Period 90 s.</p>
+<p><b>“Report encoding settings”</b> group:</p>
+<ul>
+  <li><b>“Symbol code”</b> and <b>“Symbol table”</b> – APRS symbol of the moving station (default “&gt;” and “/”, a car),</li>
+  <li><b>“Mic-E message”</b> – Mic-E status message: Off Duty, En Route, In Service, Returning, Committed, Special, Priority or Emergency (used with Mic-E encoding). Use “Emergency” only in a real emergency,</li>
+  <li><b>“Path”</b> – up to three path elements with SSID (default WIDE1-1, WIDE2-1),</li>
+  <li><b>“Status text”</b> – optional text appended to the position report (up to 40 characters),</li>
+  <li><b>“Time”</b> – timestamp in the report: None, “Hour, min, sec” or “Day, hour, min” (Mic-E reports have no timestamp field),</li>
+  <li><b>“Course/Speed”</b> – include course and speed in the report (Yes/No),</li>
+  <li><b>“Altitude”</b> – include altitude from GPS in the report (Yes/No).</li>
+</ul>
+<p class="note">SmartBeaconing is useful for mobile installations of the device. For a fixed digipeater or I-Gate leave it “Disabled” and use Beacons 1-8.</p>
+
+<h2 id="c10_8">10.8. Network Tab</h2>
+<figure><img class="shot" src="img/im-015.png" alt="Network Tab"></figure>
+<p>Currently there are two network configuration methods possible:</p>
+<ul>
+  <li><b>“DHCP”</b> - which is commonly used method where relevant network settings are automatically received from DHCP server (most likely a network router),</li>
+  <li><b>“Static IP”</b> - which allow to configure all network settings manually.</li>
+</ul>
+<p>If you wish to use “Static IP”, then you need to know your network configuration and properly set relevant fields manually:</p>
+<ul>
+  <li><b>“IP Address”</b> - IP address of your WX3in1 Plus 2.0 device, you should select a free IP address from your local network,</li>
+  <li><b>“IP Mask”</b> - subnet mask of your local network,</li>
+  <li><b>“Gateway”</b> - IP address of your network router or other device which provides internet access on your local network,</li>
+  <li><b>“DNS”</b> - this should be your internet provider's domain name server address, in most situations you can also use your routers IP address, as most routers do DNS query relaying.</li>
+</ul>
+<p>Above network settings must be set correctly to match your local network and internet access configuration.</p>
+<p>If you use DHCP for a device installed in a remote location, it is a good idea to reserve its IP address in the DHCP server (router) configuration. Firmware v1.06 fixed APRS-IS hang-ups when the DHCP server assigned a new IP address, and v1.07 fixed unnecessary lease renewal requests with leases longer than 31 days.</p>
+
+<h2 id="c10_9">10.9. APRS-IS gateway Tab</h2>
+<p class="ind">This Tab contains all settings related to APRS-IS T2 server connection, including packet forwarding from RF to APRS-IS (i-gating) and APRS-IS to RF packet relaying.</p>
+
+<h3 id="c10_9_1">10.9.1. APRS-IS gateway / APRS-IS server Tab</h3>
+<figure><img class="shot" src="img/im-016.png" alt="APRS-IS server"></figure>
+<ul>
+  <li><b>“APRS-IS servers”</b> - domain names or IP addresses of APRS-IS T2 servers which should be connected by WX3in1 Plus 2.0. A list can be found on this page: http://www.aprs2.net/serverstats.php.</li>
+  <li><b>“APRS-IS port”</b> - IP ports of APRS-IS servers, in most cases default port 14580 should work fine.</li>
+  <li><b>“APRS-IS login username”</b> - this should be your callsign with ssid, the same as on Radio Tab,</li>
+  <li><b>“APRS-IS login password”</b> - this should be a password (passcode) for your callsign, passwords should be generated by your APRS-IS server sysop,</li>
+  <li><b>“Inactivity reconnect timeout [m]”</b> – this field defines the amount of time after which WX3in1 Plus 2.0 will try to reconnect to APRS-IS server. Most APRS-IS servers send “keepalive” string every few tens of seconds so in case of no data received for a longer time we can assume that something gone wrong with the connection. Default value of 3 minutes should work fine.</li>
+  <li><b>“APRS-IS server filter settings”</b> - this is a global filter setting string which is sent to APRS-IS server after logging and it tells the server which packets you want to receive from it. Default value of “m/40” tells the server to send all posits, objects from stations within 40 km radius. Messages addressed to these stations will also be received from the server.</li>
+</ul>
+<p class="note">APRS-IS server filter setting may be potentially dangerous if you are not sure what you are doing. Please avoid changing filter to a very wide setting to avoid being flooded with packets from APRS-IS server. All packets received from APRS-IS are then processed according to “I-Gate” Tab settings and they can be forwarded to RF as “third-party packets”.</p>
+
+<h3 id="c10_9_2">10.9.2. APRS-IS gateway / APRS-IS (common) Tab</h3>
+<figure><img class="shot" src="img/im-017.png" alt="APRS-IS common"></figure>
+<ul>
+  <li><b>“APRS-IS heard buffer timeout [m]”</b> - determines the time (in minutes) after which callsigns of stations heard from APRS-IS server are removed from the “APRS-IS heard” buffer.</li>
+</ul>
+<p>We need to store callsigns of stations heard from APRS-IS because:</p>
+<p>1) Message packets addressed to these stations should not be forwarded from APRS-IS to RF (it is assumed that if a station was heard from APRS-IS, then it has an internet connection so it has already received this message packet directly from APRS-IS and it is not necessary to forward it to RF),</p>
+<ul>
+  <li><b>“APRS-IS to RF dest”</b> - default destination field applied to all packets forwarded from APRS-IS to RF.</li>
+</ul>
+
+<h3 id="c10_9_3">10.9.3. APRS-IS gateway / RF-&gt;APRS-IS</h3>
+<figure><img class="shot" src="img/im-018.png" alt="RF to APRS-IS"></figure>
+<ul>
+  <li><b>“Gate RF packets to APRS-IS”</b> - if enabled, device will forward all packets received from RF to APRS-IS.</li>
+</ul>
+
+<h3 id="c10_9_4">10.9.4. APRS-IS gateway / APRS-IS-&gt;RF (messages)</h3>
+<figure><img class="shot" src="img/im-019.png" alt="APRS-IS to RF messages"></figure>
+<p>Please note that below we will call packets of “message” type as “message packets” or “messages” and all other packets as “non-message” packets.</p>
+<ul>
+  <li><b>“Gate messages to local RF”</b> - if enabled, device will forward message packets to stations heard in local RF,</li>
+  <li><b>“Message path”</b> - default path applied to message packets forwarded from APRS-IS to RF,</li>
+  <li><b>“Local RF heard max. digi-hops”</b> - stations which packets were received after being digipeated by number of digipeaters not higher than defined in this field, will be considered as stations in local RF,</li>
+  <li><b>“Local RF heard buffer timeout [m]”</b> - determines the time (in minutes) after which stations heard from local RF are removed from the “local RF heard” buffer.</li>
+</ul>
+<p>Difference between local RF heard buffer and RF heard buffer is that:</p>
+<p>1) Local RF heard buffer stores station callsigns heard within limited number of digi-hops,<br>2) RF buffer stores all other station callsigns heard from RF.</p>
+<p>Local RF heard stations can be recipients of messages because they are located nearby, and RF heard stations can't be recipients of messages because, although heard from RF, they are located too far.</p>
+<p>We need to store callsigns of stations heard from local RF because:</p>
+<p>1) Only these stations can be recipients of message packets.<br>2) When a message packet sender is heard by our station from local RF, then its message shouldn't be forwarded from APRS-IS to RF (because we heard this station before from local RF so it is somewhere nearby and probably has already sent the same message packet directly to RF).</p>
+
+<h3 id="c10_9_5">10.9.5. APRS-IS gateway / APRS-IS-&gt;RF (non-messages)</h3>
+<figure><img class="shot" src="img/im-020.png" alt="APRS-IS to RF non-messages"></figure>
+<ul>
+  <li><b>“Gate non-message packets to RF”</b> - if enabled, non-message packets will be forwarded from APRS-IS to RF based on a filter rules discussed below,</li>
+  <li><b>“Non-message path”</b> - default path applied to non-message packets forwarded from APRS-IS to RF,</li>
+  <li><b>“Gate if source station heard via RF”</b> - if enabled, the device will forward packets from APRS-IS to RF even if source station was heard on RF. Should be disabled,</li>
+  <li><b>“RF heard buffer timeout [m]”</b> - determines the time (in minutes) after which stations heard from RF are removed from the “RF heard” buffer.</li>
+</ul>
+<p>We need to store callsigns of stations heard from RF because:</p>
+<p>1) If a station is heard from RF and “Gate if source station heard via RF” is disabled, then non-message packets from such station will not be forwarded from APRS-IS to RF.<br>2) When a message packet sender is heard by our station from RF, then its message shouldn't be forwarded from APRS-IS to RF (because we heard this station before from RF so it is somewhere nearby and probably has already sent the same message packet directly to RF).</p>
+<ul>
+  <li><b>“Max. packets per 1 / 2 / 3 min”</b> - maximum number of packets forwarded from APRS-IS to RF in 1 / 2 / 3 min time periods. This option limits number of packets forwarded from APRS-IS to RF to prevent channel abuse.</li>
+  <li><b>“Filter setup”</b><span class="new">24 entries since v1.11</span> - this button opens the filter for non-message packets sent from APRS-IS to RF (UI-View style). By default all packets are denied. Then filter entries are processed from first to last field checking for allowed packet type and station. The order of entries is important: comparison stops when a pattern match is found, so an entry which allows or denies something is not tested again in next fields. Callsigns can use the <code>*</code> wildcard (all characters to the end of the pattern) and the <code>?</code> wildcard (a single character, except space). SSID can be 0 - 15 or <code>*</code>. Possible entry types are:
+    <ul>
+      <li><b>Not used</b> – this field will be skipped,</li>
+      <li><b>Allow all</b> – all packets will be allowed from station defined in callsign/ssid fields,</li>
+      <li><b>Deny all</b> – all packets will be denied from stations defined in callsign/ssid fields,</li>
+      <li><b>Beacons</b> – beacon type packets starting with '!', '/', '=', '@' symbols from stations defined in callsign/ssid fields,</li>
+      <li><b>Destination</b> – all packets with destination field defined in callsign/ssid fields,</li>
+      <li><b>Telemetry</b> – all telemetry parameters message packets (PARM, UNIT, EQNS, BITS) from station defined in callsign/ssid fields,</li>
+      <li><b>Bulletin</b> – bulletin packets from stations defined in callsign/ssid fields.</li>
+    </ul></li>
+</ul>
+<figure><img src="img/v113_aprsis_rf_filter.png" style="width:13.5cm" alt="APRS-IS packets to RF filter"><figcaption>“Filter setup” window, Configurator v1.13 layout (reconstructed) – 24 entries</figcaption></figure>
+<p>Please remember that packets processed through above filter must first be received from APRS-IS server. Therefore you should also use “APRS-IS server filter settings” string (in APRS-IS Tab, default “m/40” should be good for initial tests) to tell APRS-IS server that you want to receive anything.</p>
+<p class="note">APRS-IS to RF forwarding is a complicated topic. All above settings were introduced to allow balanced and limited forwarding because RF capacity is much narrower than internet and shouldn't be overflowed with unnecessary traffic. Default setting of this Tab will allow you to forward everything from RF to APRS-IS (not dangerous) and forward messages from APRS-IS to local RF stations (shouldn't generate a lot of traffic). Other packets will not be forwarded from APRS-IS to RF.</p>
+
+<h2 id="c10_10">10.10. RTC/NTP Tab</h2>
+<figure><img class="shot" src="img/im-021.png" alt="RTC/NTP"></figure>
+<ul>
+  <li><b>“Upload PC system time on config write”</b> - if this option is selected, application will ignore date and time fields visible below and will upload your PC system time on configuration write,</li>
+  <li><b>“Year”, “Month”, “Day”, “Hour”, “Minute”</b> - user-defined date and time for WX3in1 Plus 2.0,</li>
+  <li><b>“Use NTP server”</b> - if this option is selected, WX3in1 Plus 2.0 will periodically connect to defined network time server and will synchronize its clock,</li>
+  <li><b>“NTP server”</b> - domain name or IP of network time server, in some cases this can also be your router's IP, if NTP option is active on your local network router.</li>
+</ul>
+<p>Internal Real Time Clock is updated when the device exits config mode and enters normal mode. To get exact time please reboot your unit to normal mode quickly after config write.</p>
+<p>If you enable “Use NTP server” option, time will be updated from Network Time Protocol server on the internet. The default server is a Polish pool server (0.pl.pool.ntp.org). You can use a server of your own country pool, for example 0.es.pool.ntp.org in Spain, or the global pool.ntp.org.</p>
+
+<h2 id="c10_11">10.11. Remote access Tab</h2>
+<p class="ind">This Tab contains all settings related to remote access to the device using different methods and protocols. Since firmware v1.10 it has five sub-tabs: WWW, Telnet, KISS via TCP/IP, APRS-IS simple server and Statistics upload.</p>
+
+<h3 id="c10_11_1">10.11.1. Remote access / WWW</h3>
+<figure><img class="shot" src="img/v113_www.png" alt="WWW"><figcaption>Configurator v1.13 layout (reconstructed)</figcaption></figure>
+<ul>
+  <li><b>“WWW user”</b> - username to access your WX3in1 Plus 2.0 web service,</li>
+  <li><b>“WWW password”</b> - password to access your WX3in1 Plus 2.0 web service,</li>
+  <li><b>“WWW port”</b> - web service IP port number,</li>
+  <li><b>“Alternative logo password”</b><span class="new">not described before</span> - password which enables an alternative logo on the device web pages. Leave the default value “none” if you were not given such a password.</li>
+</ul>
+<p>To access your WX3in1 Plus 2.0 web service you should use a web browser and connect to WX3in1 Plus 2.0 IP address defined in Network Tab. For example, to connect to a device with IP address of 192.168.2.2 you should write http://192.168.2.2/ in your web browser address field.</p>
+<p class="note">The default user name and password for WWW, telnet and APRS-IS simple server are “admin”/“admin”. Please change them before you connect the device to a network which can be reached from the internet.</p>
+
+<h3 id="c10_11_2">10.11.2. Remote access / Telnet</h3>
+<figure><img class="shot" src="img/im-023.png" alt="Telnet"></figure>
+<ul>
+  <li><b>“Telnet user”</b> - username to access your WX3in1 Plus 2.0 telnet service,</li>
+  <li><b>“Telnet password”</b> - password to access your WX3in1 Plus 2.0 telnet service,</li>
+  <li><b>“Telnet port”</b> - telnet IP port number,</li>
+  <li><b>“Telnet debug messages”</b> - options in this group allow to select which telnet debug messages are on by default every time you connect to your WX3in1 Plus 2.0 with telnet terminal.</li>
+</ul>
+<p>Telnet access can be very useful for debugging of your WX3in1 Plus 2.0 configuration and the whole installation. Skilled user can resolve most problems by analyzing debug messages sent by WX3in1 Plus 2.0 in a fashion similar to Linux system log. Recommended telnet client is Putty, a free implementation of terminal for Windows and Linux platforms: http://www.chiark.greenend.org.uk/~sgtatham/putty/.</p>
+
+<h3 id="c10_11_3">10.11.3. Remote access / KISS via TCP/IP</h3>
+<figure><img class="shot" src="img/im-024.png" alt="KISS via TCP/IP"></figure>
+<ul>
+  <li><b>“KISS via TCP/IP enable”</b> - enables or disables KISS via TCP/IP feature,</li>
+  <li><b>“KISS via TCP/IP port”</b> - KISS via TCP/IP port number.</li>
+</ul>
+
+<h3 id="c10_11_4">10.11.4. Remote access / APRS-IS simple server</h3>
+<figure><img class="shot" src="img/im-025.png" alt="APRS-IS simple server"></figure>
+<ul>
+  <li><b>“APRS-IS simple server enable”</b> - enables or disables APRS-IS simple server feature,</li>
+  <li><b>“APRS-IS simple server port”</b> - APRS-IS simple server port number,</li>
+  <li><b>“Username”</b> - username to access APRS-IS simple server,</li>
+  <li><b>“Password”</b> - password to access APRS-IS simple server,</li>
+  <li><b>“Forward traffic APRS-IS T2 → APRS-IS simple server”</b> - if enabled, then all traffic from APRS-IS T2 server (specified in APRS-IS gateway / APRS-IS server Tab) will be forwarded to APRS-IS simple server socket,</li>
+  <li><b>“Forward traffic APRS-IS simple server → APRS-IS T2”</b> - if enabled, then all traffic from APRS-IS simple server socket will be forwarded to APRS-IS T2 server (specified in APRS-IS gateway / APRS-IS server Tab).</li>
+</ul>
+<p class="note">This feature must be used with caution and you should know what you are doing before using it. With APRS-IS simple server feature you can send packets to RF and T2 servers via WX3in1 Plus 2.0 without any limitations.</p>
+
+<h3 id="c10_11_5">10.11.5. Remote access / Statistics upload <span class="new">NEW v1.10</span></h3>
+<figure><img class="shot" src="img/v113_statsupload.png" alt="Statistics upload"><figcaption>Configurator v1.13 layout (reconstructed) – default values</figcaption></figure>
+<p class="ind">Statistics upload is an experimental feature added in firmware v1.10. When enabled, the device periodically sends its statistics to an HTTP server.</p>
+<ul>
+  <li><b>“Statistics upload enable”</b> - enables (Yes) or disables (No) statistics upload,</li>
+  <li><b>“Device ID”</b> - numeric identifier of your device on the statistics server (up to 5 digits),</li>
+  <li><b>“Upload server hostname”</b> - domain name or IP address of the statistics server (up to 48 characters),</li>
+  <li><b>“Upload server port”</b> - TCP port of the statistics server (0 - 65535, usually 80),</li>
+  <li><b>“Upload server path”</b> - path of the server script which receives the statistics (up to 32 characters, default “APRS/aprs_stat.php”),</li>
+  <li><b>“Upload interval [min]”</b> - how often statistics are sent (1 - 240 minutes).</li>
+</ul>
+<p class="note">The server side is not part of the device. Use this feature only if you have a server prepared to receive the statistics, otherwise leave it disabled. The default values (Device ID 123, server 192.168.2.1) are only examples.</p>
+
+<h2 id="c10_12">10.12. Telemetry reports Tab</h2>
+<p class="ind">This Tab contains all settings related to telemetry reports feature present in APRS protocol. Telemetry reports allow to send various data to APRS, which then can be plotted on graphs by WWW services connected to APRS/APRS-IS network (like well-known aprs.fi service).</p>
+<p>You can find more useful information about telemetry reports format in APRS specification: http://aprs.org/doc/APRS101.PDF, page 68.</p>
+
+<h3 id="c10_12_1">10.12.1. Telemetry reports / Report settings</h3>
+<figure><img class="shot" src="img/im-026.png" alt="Report settings"></figure>
+<ul>
+  <li><b>“Telemetry parameters”</b> – this group of fields defines settings of PARM, UNIT, EQNS, and BITS parameter packets which describe the telemetry data sent by the device,
+    <ul>
+      <li><b>“Dest”</b> – destination field of a telemetry parameters packet,</li>
+      <li><b>“Path”</b> – APRS path (default value of WIDE2-2 will allow your device to be digipeated by most nearby digipeaters), if you leave this field empty, packet will be sent without path,</li>
+      <li><b>“RF[min]“</b> – telemetry parameters packet transmit rate to RF (expressed in minutes), packet will not be sent if this field is set to 0,</li>
+      <li><b>“IS[min]“</b> – telemetry parameters packet transmit rate to APRS-IS (expressed in minutes), packet will not be sent if this field is set to 0,</li>
+    </ul></li>
+  <li><b>“Telemetry data”</b> – this group of fields defines settings telemetry data reports,
+    <ul>
+      <li><b>“Dest”</b> – destination field of a telemetry data packet,</li>
+      <li><b>“Path”</b> – APRS path (default value of WIDE2-2 will allow your device to be digipeated by most nearby digipeaters), if you leave this field empty, packet will be sent without path,</li>
+      <li><b>“RF[min]“</b> – telemetry data packet transmit rate to RF (expressed in minutes), packet will not be sent if this field is set to 0,</li>
+      <li><b>“IS[min]“</b> – telemetry data packet transmit rate to APRS-IS (expressed in minutes), packet will not be sent if this field is set to 0,</li>
+    </ul></li>
+  <li><b>“Telemetry project title”</b> - this is a project name associated with the telemetry station, sent in BITS message (up to 23 characters),</li>
+  <li><b>“First telemetry data packet delay [min]”</b> - delay for the first telemetry data packet, it allows to gather data (especially for 10-min and 60-min report) after device power-up,</li>
+  <li><b>“Telemetry reports”</b> - if disabled, no telemetry parameters or telemetry data messages will be sent.</li>
+</ul>
+
+<h3 id="c10_12_2">10.12.2. Telemetry reports / Analog channels</h3>
+<p class="ind">This Tab defines 5 analog channels available in APRS telemetry reports. You can select many different sources for channels data, including external WXTelemetry module data (M), other external devices data (E) and device internal data (I).</p>
+<figure><img class="shot" src="img/im-027.png" alt="Analog channels"></figure>
+<ul>
+  <li><b>“Name”</b> - short name for the channel, length is limited by APRS standard and is different for different channel numbers,</li>
+  <li><b>“Units”</b> - short name for units of data for the channel, length is limited by APRS standard and is different for different channel numbers,</li>
+  <li><b>“Source”</b> - most important field, specifies what data will be send for particular channel, (M) sources are associated with WXTelemetry module and (I) sources are associated with device's internal statistics and measurements,</li>
+  <li><b>“Coeff A”, “Coeff B”, “Coeff C”</b> - these coefficients tell recipients of the telemetry reports how to decode analog value in following form: value = A*data*data + B*data + C,</li>
+  <li><b>“1 min average”</b> - only functional for external telemetry module data (M), defines if reported values are averaged or not,</li>
+  <li><b>“Default parameters”</b> – you should click this button after you change data source for the channel. It loads default coefficient values and name/units for a channel.</li>
+</ul>
+<p>Sources available in Configurator v1.13:</p>
+<table class="grid">
+<tr><th style="width:12%">Type</th><th>Sources</th></tr>
+<tr><td>(M) WXTelemetry</td><td>Current1 (5A / 2.5A / 1.25A fullscale), Current2 (5A / 2.5A / 1.25A fullscale), Voltage1, Voltage2, Temperature (DS18B20), Temperature (DS18S20)</td></tr>
+<tr><td>(E) external</td><td>Temperature (DS18B20), Temperature (DS18S20) – rear panel thermometer</td></tr>
+<tr><td>(I) internal</td><td>Input voltage; RX'ed packets (1 hour / 10 min); DIGI'ed packets (1 hour / 10 min); Decode efficiency (total / 1 hour); <b>DIGI'ed/RX'ed (1 hour / total)</b><span class="new">v1.12</span>; <b>DIGI'ed/pkt starts (1 hour / total)</b><span class="new">v1.12</span></td></tr>
+</table>
+<p>Since firmware v1.12 packet statistics can be reported with values up to 999 (255 in older versions).</p>
+<p class="note"><b>Important note:</b> If you change “Source” field for a channel, you also need to change “Name”, “Units”, and “Coeffs” fields. Otherwise everyone else who receive your data (including web services like aprs.fi) will not be able do decode your reports properly. Every source has its own coefficients, names and units. With USB Configurator you can get default settings by clicking on “Default parameters” button. When changing configuration via WWW you need to set these fields manually (you can always write them down from USB Configurator application).</p>
+<p>Firmware v1.01 corrected the coefficients of two default channels. If you used older values, change them back to: rear panel thermometer 0.0, 0.5, -64 (0.5 °C resolution) and input voltage 0.0, 0.075, 0.0.</p>
+
+<h3 id="c10_12_3">10.12.3. Telemetry reports / Digital channels</h3>
+<p class="ind">This Tab defines 8 digital channels available in APRS telemetry reports. These tabs should be used when WXBits module is connected.</p>
+<figure><img class="shot" src="img/im-028.png" alt="Digital channels"></figure>
+<ul>
+  <li><b>“Name”</b> - short name for the channel, length is limited by APRS standard and is different for different channel numbers,</li>
+  <li><b>“Label”</b> - short label for the channel, length is limited by APRS standard and is different for different channel numbers,</li>
+  <li><b>“Source”</b> - most important field, specifies what data will be send for particular channel, (M) sources are associated with WXBits module,</li>
+  <li><b>“Inverted”</b> - defines if channels should be reported as inverted in BITS telemetry message,</li>
+  <li><b>“Default parameters”</b> – you should click this button after you change data source for the channel. It loads default name/label values for a channel.</li>
+</ul>
+<p class="note"><b>Important note:</b> If you change “Source” field for a channel, you also need to change “Name”, “Label”, and “Inverted” fields. Otherwise everyone else who receive your data (including web services like aprs.fi) will not be able do decode your reports properly.</p>
+
+<h3 id="c10_12_4">10.12.4. Telemetry reports / WXBits outputs</h3>
+<p class="ind">This Tab defines what should be the default states for WXBits output channels. After power-up WX3in1 Plus 2.0 will constantly try to set outputs to the defined states, unless changed by the user.</p>
+<figure><img class="shot" src="img/im-029.png" alt="WXBits outputs"></figure>
+
+<h2 id="c10_13">10.13. Weather reports Tab</h2>
+<p class="ind">This Tab contains all settings related to weather reports. For weather reports you need to have a compatible weather station connected to WX3in1 Plus 2.0.</p>
+
+<h3 id="c10_13_1">10.13.1. Weather reports / Weather beacon</h3>
+<figure><img class="shot" src="img/im-030.png" alt="Weather beacon"></figure>
+<ul>
+  <li><b>“Dest”</b> – destination field of a weather report,</li>
+  <li><b>“Path”</b> – APRS path (default value of WIDE2-2 will allow your device to be digipeated by most nearby digipeaters), if you leave this field empty, weather report will be sent without path,</li>
+  <li><b>“RF[min]“</b> – weather report transmit rate to RF (expressed in minutes), report will not be sent if this field is set to 0,</li>
+  <li><b>“IS[min]“</b> – weather report transmit rate to APRS-IS (expressed in minutes), report will not be sent if this field is set to 0,</li>
+  <li><b>“Comment“</b> – This is a short comment which will be appended at the end of weather report (up to 32 characters).</li>
+</ul>
+
+<h3 id="c10_13_2">10.13.2. Weather reports / Weather Underground</h3>
+<p class="ind">This tab is related to Weather Underground service which allows to upload and store weather data from your station.</p>
+<figure><img class="shot" src="img/im-031.png" alt="Weather Underground"></figure>
+<ul>
+  <li><b>“Weather reports to WeatherUnderground”</b> – enables WeatherUnderground reporting in your WX3in1 Plus 2.0 device,</li>
+  <li><b>“Station ID”</b> – ID of the station assigned when you were adding a station in WeatherUnderground account settings on their web page,</li>
+  <li><b>“Password”</b> – password of your WeatherUnderground account (as far as I know, it is the same for all stations on your account if you have more than one),</li>
+  <li><b>“Normal upload server”</b> – this is WeatherUnderground server name for report reception, you should leave it as is (weatherstation.wunderground.com),</li>
+  <li><b>“Rapid fire upload server”</b> - this is WeatherUnderground server name for “rapid fire” report reception, you should leave it as is (rtupdate.wunderground.com),</li>
+  <li><b>“Weather send method”</b> – this option allows you to select between “rapid fire” realtime frequent report update or normal report update every few minutes,</li>
+  <li><b>“Normal weather send rate [min]”</b> – Frequency of normal report update (in minutes, 1 - 240),</li>
+  <li><b>“Rapid fire weather send rate [sec]”</b> – Frequency of “rapid fire” realtime report update (in seconds, 5 - 60).</li>
+</ul>
+<p class="note">Weather Underground changed their servers after firmware v1.12 was released. Firmware v1.13 contains the fix needed for these changes<span class="new">v1.13</span>, so please use firmware v1.13 for Weather Underground reporting. Weather Underground may change its service again in the future. If reports stop, check the “Wunderground” telnet debug messages.</p>
+
+<h2 id="c10_14">10.14. External interfaces Tab</h2>
+<p class="ind">This Tab is related to settings of all external devices and interfaces which may be connected to WX3in1 Plus 2.0 using rear panel serial ports.</p>
+
+<h3 id="c10_14_1">10.14.1. External interfaces / RS-232 ports</h3>
+<figure><img class="shot" src="img/im-032.png" alt="RS-232 ports"></figure>
+<ul>
+  <li><b>“BT/Microsat Bluetooth connected”</b> - enable this if you have BT/Microsat Bluetooth interface connected to device serial port.</li>
+</ul>
+<p>If you want Bluetooth module connected to serial port, then only port 1 is operational (in Bluetooth mode) and port 2 is disabled.</p>
+<ul>
+  <li><b>“RS-232 port 1”</b> - selection of serial port 1 function: None, Weather station (default), GPS, RSS-131 gamma monitor or KISS,</li>
+  <li><b>“RS-232 port 2”</b> - selection of serial port 2 function: None, Weather station, GPS (default), RSS-131 gamma monitor or KISS.</li>
+</ul>
+<p>Not all RS-232 port 1, port 2 setting combinations are possible. If WS-2300 or WS-2350 station is selected on one port, then the other port can work in RX-only mode (e.g. GPS).</p>
+
+<h3 id="c10_14_2">10.14.2. External interfaces / RS-485 ports</h3>
+<figure><img class="shot" src="img/im-033.png" alt="RS-485 port"></figure>
+<ul>
+  <li><b>“WXTelemetry module (RS-485)”</b> - enables or disables WXTelemetry module support,</li>
+  <li><b>“WXBits module (RS-485)”</b> - enables or disables WXBits module support.</li>
+</ul>
+
+<h3 id="c10_14_3">10.14.3. External interfaces / Thermometer port</h3>
+<figure><img class="shot" src="img/im-034.png" alt="Thermometer port"></figure>
+<ul>
+  <li><b>“Thermometer support”</b> - enables or disables support of thermometer connected to device rear panel,</li>
+  <li><b>“Thermometer model”</b> - thermometer model selection (DS18B20 or DS18S20).</li>
+</ul>
+
+<h3 id="c10_14_4">10.14.4. External interfaces / Weather station</h3>
+<figure><img class="shot" src="img/im-035.png" alt="Weather station"></figure>
+<ul>
+  <li><b>“Weather station model”</b> - selection of weather station model connected to WX3in1 Plus 2.0 serial port.</li>
+</ul>
+
+<h3 id="c10_14_5">10.14.5. External interfaces / GPS receiver</h3>
+<figure><img class="shot" src="img/im-036.png" alt="GPS receiver"></figure>
+<ul>
+  <li><b>“GPS module baudrate”</b> - selection of GPS module communication baudrate (1200 - 19200). Firmware v1.01 fixed this setting, in v1.00 GPS always worked at 9600 baud.</li>
+</ul>
+
+<h3 id="c10_14_6">10.14.6. External interfaces / KISS</h3>
+<figure><img class="shot" src="img/im-037.png" alt="KISS"></figure>
+<ul>
+  <li><b>“KISS baudrate”</b> - KISS packet communication baudrate setting,</li>
+  <li><b>“KISS direction”</b> - selects KISS direction:
+    <ul><li><b>“RF-&gt;serial”</b> - only output of packets received from RF,</li>
+        <li><b>“both”</b> - output of packets received from RF and forwarding of packets from serial port to RF,</li></ul></li>
+  <li><b>“Check for serial-&gt;RF packet correctness”</b> - if enabled, then it tries to prevent forwarding of corrupted or malformed packets from serial port to RF.</li>
+</ul>
+
+<h3 id="c10_14_7">10.14.7. External interfaces / RSS-131 gamma monitor</h3>
+<p class="ind">This tab is related to settings of specialized RSS-131 gamma monitor used to monitor radiation. Feature was added in firmware v1.07 on user request. If you need any more info about support of this radiation monitoring device, please contact us by email.</p>
+<figure><img class="shot" src="img/v113_gamma.png" alt="RSS-131 gamma monitor"><figcaption>Configurator v1.13 layout (reconstructed)</figcaption></figure>
+<ul>
+  <li><b>“RSS-131 baudrate”</b> - serial port baudrate of the gamma monitor (2400, 4800, 9600 or 19200),</li>
+  <li><b>“Units range”</b> - scale of the reported value (1.000 = 1u, 10u, 100u, 1m, 10m or 100m).</li>
+</ul>
+<p>To use the gamma monitor, select “RSS-131 gamma monitor” as the function of one of the RS-232 ports (chapter 10.14.1). The measured value can be sent in beacons with the <code>&lt;gamma&gt;</code> special string (chapter 10.7).</p>
+
+<h2 id="c10_15">10.15. Other Tab <span class="new">not described before</span></h2>
+<h3 id="c10_15_1">10.15.1. Other / Voltage measurement</h3>
+<figure><img class="shot" src="img/v113_other_voltage.png" alt="Voltage measurement"><figcaption>Configurator v1.13 layout (reconstructed)</figcaption></figure>
+<ul>
+  <li><b>“Voltage measurement calibration”</b> - correction of the input voltage measurement from -5.0% to +5.0% in 0.5% steps (default +/- 0%). This option was added in firmware v1.07. Measure the supply voltage with a good multimeter and choose the correction which makes the voltage shown by the device (telnet, WWW, <code>&lt;volt&gt;</code> beacon string) match it.</li>
+</ul>
+
+<!-- ============================ 11 ============================ -->
+<h1 id="c11">11. Telnet interface</h1>
+<p class="ind">Telnet interface is a very good method to see what happens inside of your WX3in1 Plus 2.0 device. It provides you with a lot of debugging messages and statistics, which allows you to locate any potential problems and solve them.</p>
+<h2 id="c11_1">11.1. Telnet client software</h2>
+<p class="ind">To connect to WX3in1 Plus 2.0 telnet interface you will need to download one of telnet client applications available over the internet. I recommend you to use an open source “putty” application for this task. You can find it here: http://www.putty.org/. On Linux you can also use the standard <code>telnet</code> command.</p>
+<figure><img src="img/im-038.png" style="width:8.5cm" alt="PuTTY"></figure>
+<p>To configure “putty” as a telnet terminal for WX3in1 Plus 2.0 you need to set the following fields (visible above):</p>
+<ul>
+  <li>Host Name (or IP address) – this is your WX3in1 Plus 2.0 network IP address,</li>
+  <li>Connection type: Telnet (this is important, as we want to use a simple telnet interface),</li>
+  <li>Port – this should be set the same as “Telnet port” in your device's configuration.</li>
+</ul>
+<p>After setting proper values you can save them with a “Save” button.</p>
+<p>Connect to your device with “Open” button. Then you should see a black window of your telnet terminal with a prompt for your “Username” and “Password”. Use the values from your device's configuration.</p>
+<h2 id="c11_2">11.2. Telnet commands</h2>
+<p>For a list of available WX3in1 Plus 2.0 telnet commands please issue “help” command, you should see a full list as below:</p>
+<figure><img src="img/im-039.png" style="width:13cm" alt="Telnet help"><figcaption>Telnet command list (captured with firmware v1.09)</figcaption></figure>
+<p>Telnet command list can be different for new firmware versions. We will not discuss all possible commands in this section. Just a short description of command types:</p>
+<ul>
+  <li>print – used to print some data in your telnet terminal window,</li>
+  <li>send – used to send test packets to RF,</li>
+  <li>debug – used to turn on or off some debug messages in your telnet terminal window,</li>
+  <li>update – used for remote firmware update function,</li>
+  <li>rs485 – used to set levels on RS-485 bus for cable connection test,</li>
+  <li>wxbits – used to read WXBits inputs and change WXBits output levels.</li>
+</ul>
+
+<!-- ============================ 12 ============================ -->
+<h1 id="c12">12. Remote firmware update via TFTP</h1>
+<p class="ind">WX3in1 Plus 2.0 allows you to make a remote firmware update via the internet using TFTP protocol.</p>
+<p>General rule for WX3in1 Plus 2.0 firmware updates is: always both firmware and configuration are being updated to make sure that configuration is compatible with firmware version.</p>
+<p class="note">For this reason it is very important to set correct IP settings in configuration before generating a RUF file and making an update or you will lose contact with your device installed in remote location!</p>
+<p>Remote firmware update procedure is as follows:</p>
+<ol>
+  <li>Run your WX3in1 Plus 2.0 Configurator application,</li>
+  <li>Now you need to set all your device configuration settings, with particular emphasis on Network Tab IP settings. If you previously exported your configuration using “Configuration import/export-&gt;Save to file” button, then you can reload it using “Configuration import/export-&gt;Read from file” button,</li>
+  <li>Generate a remote update file using “Build remote update file” button (the default file name is wx3in1plus20.ruf). The firmware is taken from the Configurator executable, so the firmware and configuration versions in a RUF file always match,</li>
+  <li>Login to your device via telnet (more information available in “Telnet interface” chapter),</li>
+  <li>Issue a telnet “update enable” command to enable TFTP function in your WX3in1 Plus 2.0 device,</li>
+  <li>Now you need to use your preferred TFTP client to upload the remote update file. In Windows with enabled built-in TFTP feature, use a “<code>tftp -i &lt;wx3in1 IP address&gt; PUT wx3in1plus20.ruf</code>” command in the command line. On Linux you can use for example “<code>tftp -m binary &lt;wx3in1 IP address&gt; -c put wx3in1plus20.ruf</code>” (tftp-hpa client),</li>
+  <li>After RUF file upload is finished you should see in telnet command line a following information: “(USER) Flash write finish, please wait for checksum verification” and after a few seconds: “(USER) Checksum OK, use "update burn" command to copy firmware to program memory.”</li>
+  <li>Issue an “update burn” command to write firmware to device program memory.</li>
+  <li>After a few seconds device will reboot, closing all connections and within next few seconds it should start with updated firmware/configuration.</li>
+</ol>
+<p>It is not possible to “brick” the device with damaged or corrupted remote update file. The whole operation is protected with CRC checksums and it will not allow to make a mistake.</p>
+<p>But if you set incorrect IP settings, your device will simply power-up after update with incorrect network settings and you will lose contact with it. Always make sure that IP settings are correct before generating a RUF file.</p>
+<p>TFTP function works using UDP port number 69, so this port number must be properly forwarded on router, where WX3in1 Plus 2.0 is connected. Also telnet TCP port number 23 must be forwarded for telnet function which is necessary for the update.</p>
+
+<!-- ============================ 13 ============================ -->
+<h1 id="c13">13. Troubleshooting</h1>
+<p class="ind">In this section we will describe some possible problem encountered by users of WX3in1 Plus 2.0 device and try to help you to solve them.</p>
+<p><b>Question: What should I set in APRS-IS Username and Password field?</b><br>
+Answer: In Username field you should set the same string as your WX3in1 Plus 2.0 callsign and SSID, separated by a hyphen. It should be written in uppercase. Example: SQ3PLX-5.<br>
+For your APRS-IS password you should ask your APRS-IS server operator. Some password generators are also available on the internet. The password (passcode) is calculated from the callsign without SSID, so it is the same for all SSIDs of your callsign. The default value 12345 is only a placeholder.</p>
+<p><b>Question: I think that my device doesn't connect to APRS-IS or NTP (network time protocol server) or WeatherUnderground, etc. Why?</b><br>
+Answer #1: Check your WX3in1 Plus 2.0 device physical connection to your local network. After connecting RJ-45 network cable, you should check a led on your router or switch, it should be lit, indicating proper physical connection. If it is OK, go to answer #2.</p>
+<p>Answer #2: Check your device's IP settings including IP address, IP mask, Gateway and DNS settings in “Network” Tab. Try to ping your device with “ping &lt;wx3in1 ip address&gt;” command from your operating system's command prompt. It should answer to your pings. Make sure that your gateway IP is set to your network router's IP. If it is not, you will still be able to ping the device, but it will not be able to get out of your local network. If it is OK, go to answer #3.</p>
+<p>Answer #3: There can be many other different reasons. But if you feel that your settings are correct and it doesn't connect to any of these services, then it can be problem of your DNS settings. Below you can see how to check this over telnet:</p>
+<p class="example">00:25:47 (DNS) Server name not found, need to nslookup: time.nist.gov.<br>00:26:03 (DNS) Server name nslookup timed out: time.nist.gov.</p>
+<p>The first line means that server “time.nist.gov” is not known to your WX3in1 Plus 2.0 device. That is OK, it just needs to ask DNS for this server's IP.</p>
+<p>The second line means a problem: DNS server didn't answer to your query. You have probably misconfigured your DNS server IP. You should check your internet service provider's proper DNS IP address. In some cases you can also use your network router's IP address as a DNS, because most network routers are able to do DNS relaying. If your DNS settings are wrong, you will not be able to connect to any service with its domain name.</p>
+<p>Answer #4 (Weather Underground only): make sure that the device runs firmware v1.13, see chapter 10.13.2.</p>
+<p><b>Question: I'm not sure if my device receives APRS packets properly from my radio. How to check this?</b><br>
+Answer: The first and most obvious indicator of proper packet reception is a red “PC/PACKET” led of your WX3in1 Plus 2.0 device. It should work like that:</p>
+<ul>
+  <li>When there is something received and radio squelch is open, yellow “RADIO RX” led lights up,</li>
+  <li>Shortly after packet reception red “PC/PACKET” led lights up indicating proper packet reception and decoding.</li>
+</ul>
+<p>You can also use telnet to check if anything was received properly. You should see a message indicating that an APRS packet was received. Next method is to check telnet “print stats” command or check WWW Statistics page to see if there is a non-zero value in “APRS packet received (CRC OK)” field. The WWW input adjustment page shows the input levels of the last 10 received packets.</p>
+<p><b>Question: I'm not sure if my device sends APRS packets to RF properly. How to check this?</b><br>
+Answer: Well, the simplest method it so check with the second APRS radio if it receives any APRS packets from you.</p>
+<p>You can also check on aprs.fi if your packets appear on APRS-IS, i-gated by some other devices near you. But to use this method you should:</p>
+<ul>
+  <li>make sure that there is an APRS i-gate near you that is able to hear your APRS packets,</li>
+  <li>disconnect RJ-45 cable from your WX3in1 Plus 2.0 device or turn APRS-IS off in your beacon settings, because otherwise all your packets will be visible on aprs.fi gated by your own device (even with radio disconnected).</li>
+</ul>
+<p>You can also check telnet messages for any received packets which were sent by your device and then digipeated by other stations nearby. Also check that TX was not turned off globally in the WWW output adjustment page (firmware v1.09 and newer).</p>
+<p><b>Question: How to check if my device receives data from weather station / telemetry module / GPS / thermometer?</b><br>
+Answer: Green “EXT” led is an answer. It should blink in short time intervals indicating that your external device is fine and that your WX3in1 Plus 2.0 device receives correct data. “EXT” led is shared between all external devices connected to your WX3in1 Plus 2.0. So if you want to use it as an indicator for one of them, you will need to disconnect others.</p>
+<p>You should also see some external device debug messages over telnet which will give you an exact answer if they are connected properly.</p>
+<p><b>Question: After some configuration changes and/or firmware update, my device constantly blinks all the leds and doesn't start up. Why?</b><br>
+Answer: It is necessary to use matching Configurator application, device configuration and device firmware versions. If you download new Configurator application version, you should always update device's firmware and rewrite device's configuration to make sure that all versions match.</p>
+<p>Remember that you can't just update a firmware of the device. You always need to rewrite configuration. You also can't read your current configuration if you use different Configurator application and device firmware/configuration version.</p>
+<p>Use “Configuration import/export” function to store configuration on your PC hard disk drive each time you change your device configuration settings. Then you will be able to import your configuration in new Configurator application.</p>
+<p>Unfortunately these operations are unavoidable as device configuration often changes between firmware versions and new firmware does not understand older configuration.</p>
+<p><b>Question: SmartBeaconing does not send any position reports. Why?</b><br>
+Answer: Check that “SmartBeaconing” is “Enabled” (chapter 10.7.1), that one RS-232 port is set to “GPS” with the correct “GPS module baudrate”, that the Bluetooth interface is not enabled, and that the green “EXT” led blinks (GPS position fixed). The “GPS” telnet debug messages show the data received from the GPS receiver.</p>
+
+<!-- ============================ APPENDIX A ============================ -->
+<h1 id="appA">Appendix A. Firmware change history</h1>
+<p>Changes of WX3in1 Plus 2.0 firmware and Configurator, from the changelog published with Configurator v1.13.</p>
+<table class="grid">
+<tr><th style="width:9%">Version</th><th>Changes</th></tr>
+<tr><td>v1.00</td><td>Initial firmware release.</td></tr>
+<tr><td>v1.01</td><td>Corrected thermometer negative voltage display in beacons; temperature resolution 0.5 °C in telemetry for the rear panel thermometer (coefficients 0.0, 0.5, -64); input voltage telemetry coefficients 0.0, 0.075, 0.0 (were 0.0, 0.079, 0.0); trimmed input voltage display accuracy; corrected GPS baudrate setting (v1.00 always used 9600 baud); corrected and added Configurator hints; firmware merged into the Configurator executable.</td></tr>
+<tr><td>v1.02</td><td>WWW input adjustment tools with WX3in1 Oscilloscope window; WWW output adjustment with 1200 Hz / 2200 Hz tone pattern; MAC address on network settings page; input levels of the last 10 received packets.</td></tr>
+<tr><td>v1.03</td><td>Range-limited and area-limited digipeating; advanced “RF heard stations” list via WWW; experimental DHCP support; stricter latitude/longitude checking; beacon length 96 characters (was 64); bug fixes.</td></tr>
+<tr><td>v1.04</td><td>Fixed Mic-E decoding for longitudes 0-9 degrees; minor Configurator and firmware fixes.</td></tr>
+<tr><td>v1.05</td><td>Fixed config changes via WWW (bug in v1.03-v1.04); rewritten WS-23XX support code.</td></tr>
+<tr><td>v1.06</td><td>Fixed DHCP client APRS-IS hang-ups when the DHCP server changed the IP address.</td></tr>
+<tr><td>v1.07</td><td>KISS packet output; new “External interfaces” Tab with serial port function selection; RSS-131 gamma monitor support; fixed DHCP lease renewal every 60 s with leases over 31 days; <code>&lt;tempf&gt;</code> beacon string; <code>?</code> wildcard in APRS-IS→RF filter and digipeater callsign filter; voltage measurement calibration.</td></tr>
+<tr><td>v1.08</td><td>BT/Microsat Bluetooth module support; KISS via serial port (or Bluetooth) in both directions (TNC operation); KISS via TCP/IP packet output; APRS-IS simple server; fixed PeetBros and Davis support broken in v1.07; experimental PeetBros complete record mode.</td></tr>
+<tr><td>v1.09</td><td>Experimental 9600/GMSK packet decoding/encoding; option to turn off TX globally (WWW output adjustment); extended APRS-IS simple server.</td></tr>
+<tr><td>v1.10</td><td>Experimental statistics upload (Remote access → Statistics upload); “No APRS-IS” condition for beacon enable; device callsign in web page title.</td></tr>
+<tr><td>v1.11</td><td>Callsign filter extended from 10 to 20 fields; APRS-IS packet to RF filter extended from 12 to 24 fields; firmware cleanups.</td></tr>
+<tr><td>v1.12</td><td>GPS SmartBeaconing; maximum telemetry value for packet statistics changed from 255 to 999; new internal telemetry sources.</td></tr>
+<tr><td>v1.13</td><td>Fix for Weather Underground support, needed after changes on their servers.</td></tr>
+</table>
+
+<!-- ============================ APPENDIX B ============================ -->
+<h1 id="appB">Appendix B. Configuration value ranges</h1>
+<p>Value ranges and field lengths checked by Configurator v1.13 when the configuration is written. If a value is out of range, the Configurator shows an error message in the message window.</p>
+<table class="grid">
+<tr><th style="width:42%">Field</th><th>Allowed values</th></tr>
+<tr><td>Callsign / SSID</td><td>up to 6 characters, too short callsigns are rejected / SSID 0 - 15</td></tr>
+<tr><td>TX delay [ms]</td><td>200 - 1000</td></tr>
+<tr><td>Quiet time [ms]</td><td>200 - 3000</td></tr>
+<tr><td>Latitude / Longitude</td><td>DDMM.MMN/S (e.g. 5221.60N) / DDDMM.MME/W (e.g. 01653.63E)</td></tr>
+<tr><td>Duplicate checking [s]</td><td>15 - 180</td></tr>
+<tr><td>Path (n-N) “n&gt;=”, “n&lt;=”</td><td>1 - 7</td></tr>
+<tr><td>Area RAD0 / RAD1 distance [km]</td><td>1 - 3000</td></tr>
+<tr><td>Callsign filter SSID, APRS-IS→RF filter SSID</td><td>0 - 15 or <code>*</code></td></tr>
+<tr><td>Destination / path SSID (beacons, telemetry, weather, I-Gate, SmartBeaconing)</td><td>0 - 15</td></tr>
+<tr><td>Beacon tx rate RF / APRS-IS [min]</td><td>5 - 1440, or 0 to disable</td></tr>
+<tr><td>Beacon message</td><td>up to 95 characters, some characters are not allowed</td></tr>
+<tr><td>IP address / mask / gateway / DNS</td><td>each octet 0 - 255</td></tr>
+<tr><td>APRS-IS server port</td><td>0 - 65535</td></tr>
+<tr><td>APRS-IS server name / NTP server name</td><td>up to 31 characters</td></tr>
+<tr><td>APRS-IS server filter</td><td>up to 128 characters</td></tr>
+<tr><td>APRS-IS reconnect timeout [min]</td><td>1 - 60</td></tr>
+<tr><td>APRS-IS heard, local RF heard, RF heard buffer timeout [min]</td><td>1 - 240</td></tr>
+<tr><td>Local RF heard max. digi-hops</td><td>0 - 8</td></tr>
+<tr><td>Max. non-message packets per 1 / 2 / 3 min</td><td>1 - 240</td></tr>
+<tr><td>Statistics upload port / interval [min] / device ID</td><td>0 - 65535 / 1 - 240 / up to 5 digits</td></tr>
+<tr><td>Telemetry parameters / data tx rate [min]</td><td>5 - 1440</td></tr>
+<tr><td>First telemetry data packet delay [min]</td><td>0 - 250</td></tr>
+<tr><td>Telemetry project title</td><td>up to 23 characters</td></tr>
+<tr><td>Weather report tx rate RF / APRS-IS [min]</td><td>5 - 1440</td></tr>
+<tr><td>Weather report comment</td><td>up to 32 characters, some characters are not allowed</td></tr>
+<tr><td>Weather Underground normal / rapid fire rate</td><td>1 - 240 min / 5 - 60 s</td></tr>
+<tr><td>SmartBeaconing status text</td><td>up to 40 characters</td></tr>
+</table>
+<p class="small">Note: the Configurator uses the text “Statistics upload interval” in two error messages, “(0 - 65535)” and “(1 - 240)”. The first one most likely refers to the upload server port.</p>
+
+</body>
+</html>
