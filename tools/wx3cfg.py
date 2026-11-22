@@ -20,13 +20,14 @@
 """Check and fix Microsat WX3in1 Plus 2.0 configuration files (v1.13)."""
 
 import argparse
+import json
 import os
 import re
 import secrets
 import string
 import sys
 
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 CFG_VERSION = 'v1.13'
 
 ERROR, WARN, INFO = 'error', 'warning', 'info'
@@ -751,6 +752,72 @@ def apply_fixes(cfg, args):
 
 
 # ---------------------------------------------------------------------------
+# Summary of what the station does (for other programs, e.g. S.A.T.-APRS+)
+# ---------------------------------------------------------------------------
+def summary(cfg):
+    """Functions of the device according to the file. No passwords."""
+    c = cfg
+    g = lambda s, k, d='': (c.get(s, k) or d).strip()
+    num = lambda s, k: int(g(s, k, '0')) if g(s, k, '0').lstrip('-').isdigit() else 0
+    call = g('Radio', 'Callsign').upper()
+    ssid = g('Radio', 'SSID', '0')
+    rules = []
+    for i in range(1, 9):
+        p = 'Pathn%d_' % i
+        name = g('Digipeater', p + 'name').upper()
+        act = g('Digipeater', p + 'active', '0')
+        if name and act in ('1', '2'):
+            rules.append({'name': name, 'n_min': num('Digipeater', p + 'lower'), 'n_max': num('Digipeater', p + 'higher'),
+                          'enable_if': 'always' if act == '1' else 'no_aprsis'})
+    servers = [g('APRS-IS', 'Aprsis%d_servername' % i) for i in (1, 2, 3)]
+    servers = ['%s:%s' % (s_, g('APRS-IS', 'Aprsis%d_port' % (n + 1), '14580')) for n, s_ in enumerate(servers) if s_]
+    beacons = []
+    for i in range(1, 9):
+        b = 'Beacon%d_' % i
+        en = g('Beacons', b + 'enable', '0')
+        if en != '0' and g('Beacons', b + 'msg') and (num('Beacons', b + 'txrate_rf') or num('Beacons', b + 'txrate_aprsis')):
+            beacons.append({'n': i, 'rf_min': num('Beacons', b + 'txrate_rf'), 'is_min': num('Beacons', b + 'txrate_aprsis'),
+                            'enable_if': ITEMS['Beacon1_enable'][int(en)] if en.isdigit() and int(en) < 5 else en,
+                            'path': ('%s-%s' % (g('Beacons', b + 'path_string'), g('Beacons', b + 'path_ssid'))).strip('-')})
+    modes = [g('ExternalDevices', 'Serial1_mode', '0'), g('ExternalDevices', 'Serial2_mode', '0')]
+    station = '1' in modes and g('Weather', 'Weather_stationtype', '0') != '0'
+    st = num('Weather', 'Weather_stationtype')
+    return {
+        'version': g('!WARNING', 'Version'),
+        'callsign': call if ssid in ('', '0') else '%s-%s' % (call, ssid),
+        'position': {'lat': g('Radio', 'Latitude'), 'lon': g('Radio', 'Longitude')},
+        'baudrate': '9600' if g('Radio', 'Baudrate') == '1' else '1200',
+        'digipeater': {'on': g('Digipeater', 'Digion') == '1' and bool(rules), 'rules': rules},
+        'igate': {'rf_to_is': g('I-Gate', 'Aprsis_fromrf') == '1' and bool(servers),
+                  'msg_to_rf': g('I-Gate', 'Aprsis_msg2rf') == '1' and bool(servers),
+                  'packets_to_rf': g('I-Gate', 'Aprsis_packet2rf') == '1' and bool(servers),
+                  'servers': servers, 'user': g('APRS-IS', 'Aprsis_user'),
+                  'passcode_ok': g('APRS-IS', 'Aprsis_pass') == str(aprs_passcode(g('APRS-IS', 'Aprsis_user') or call)) if call else False},
+        'beacons': beacons,
+        'weather': {'station': ITEMS['Weather_stationtype'][st] if station and st < len(ITEMS['Weather_stationtype']) else None,
+                    'rf_min': num('Weather', 'Weather_txrate_rf') if station else 0,
+                    'is_min': num('Weather', 'Weather_txrate_aprsis') if station else 0,
+                    'wunderground': g('WeatherUnderground', 'Enable') == '1'},
+        'telemetry': g('Telemetry', 'Tele_enable') == '1',
+        'smartbeaconing': g('PositionReports', 'ReportMode') == '1',
+        'serial': [ITEMS['Serial1_mode'][int(m)] if m.isdigit() and int(m) < 5 else m for m in modes],
+        'bluetooth': g('ExternalDevices', 'Bluetooth_connected') == '1',
+        'network': {'dhcp': g('Network', 'Netconfig') == '1',
+                    'ip': '.'.join(g('Network', 'Ipaddr%d' % j) for j in range(4))},
+        'telnet': {'port': num('Telnet', 'Telnet_port') or 23, 'user': g('Telnet', 'Telnet_user')},
+        'www': {'port': num('WWW', 'Www_port') or 80},
+        'aprsis_server': {'on': g('APRSISServer', 'Aprsisserver_enable') == '1', 'port': num('APRSISServer', 'Aprsisserver_port'),
+                          'user': g('APRSISServer', 'Aprsisserver_username'),
+                          'to_t2': g('APRSISServer', 'Aprsisserver_tois') == '1', 'from_t2': g('APRSISServer', 'Aprsisserver_fromis') == '1'},
+        'kiss_tcp': {'on': g('KISSTCPIP', 'Kisstcpip_enable') == '1', 'port': num('KISSTCPIP', 'Kisstcpip_port')},
+        'stats_upload': {'on': g('Statsupload', 'Statsupload_enable') == '1', 'id': g('Statsupload', 'Statsupload_id'),
+                         'host': g('Statsupload', 'Statsupload_hostname'), 'port': num('Statsupload', 'Statsupload_port'),
+                         'path': g('Statsupload', 'Statsupload_path'), 'interval_min': num('Statsupload', 'Statsupload_txrate')},
+        'ntp': g('RTC', 'Ntp_servername') if g('RTC', 'Ntp_enable') == '1' else None,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Command line
 # ---------------------------------------------------------------------------
 COL = {ERROR: '\033[31m', WARN: '\033[33m', INFO: '\033[36m'}
@@ -793,6 +860,7 @@ def main(argv=None):
 
     p = sub.add_parser('check', help='check a .cfg file')
     p.add_argument('file')
+    p.add_argument('--json', action='store_true', help='machine-readable result with a summary of the station functions')
 
     p = sub.add_parser('fix', help='write a corrected copy of a .cfg file')
     p.add_argument('file')
@@ -841,7 +909,15 @@ def main(argv=None):
                 print(line)
         return 0
     if a.cmd == 'check':
-        return report(Checker(cfg, a.lang).run(), a.lang, color)
+        items = Checker(cfg, a.lang).run()
+        if a.json:
+            n = {lv: sum(1 for i in items if i[0] == lv) for lv in (ERROR, WARN, INFO)}
+            json.dump({'wx3cfg': __version__, 'counts': n,
+                       'items': [{'level': lv, 'section': sec, 'key': key, 'text': text} for lv, sec, key, text in items],
+                       'summary': summary(cfg)}, sys.stdout, ensure_ascii=False, indent=1)
+            sys.stdout.write('\n')
+            return 2 if n[ERROR] else (1 if n[WARN] else 0)
+        return report(items, a.lang, color)
     if a.cmd == 'fix':
         pw = apply_fixes(cfg, a)
         cfg.save(a.output)

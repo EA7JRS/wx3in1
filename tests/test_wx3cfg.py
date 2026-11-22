@@ -107,5 +107,20 @@ class Template(unittest.TestCase):
         self.assertIn('Aprsis_pass', out)
 
 
+    def test_json_summary(self):
+        import json
+        dst = os.path.join(self.tmp, 'js.cfg')
+        run('fix', TEMPLATE, '-o', dst, '--callsign', 'EA7JRS-10', '--lat', '3631.20N', '--lon', '00612.30W')
+        code, out = run('check', '--json', dst)
+        d = json.loads(out)
+        self.assertEqual(d['summary']['callsign'], 'EA7JRS-10')
+        self.assertTrue(d['summary']['digipeater']['on'])
+        self.assertTrue(d['summary']['igate']['passcode_ok'])
+        self.assertEqual(d['summary']['digipeater']['rules'][0]['n_max'], 2)
+        self.assertIsNone(d['summary']['weather']['station'])
+        self.assertNotIn('admin', json.dumps(d['summary']).replace('"user": "admin"', ''))
+        self.assertEqual(d['counts']['error'], 0)
+
+
 if __name__ == '__main__':
     unittest.main()

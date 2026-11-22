@@ -55,6 +55,9 @@ python3 tools/wx3cfg.py passcode EA7XXX
 
 # Ver un archivo con los valores de las listas en palabras
 python3 tools/wx3cfg.py show mi_estacion.cfg Radio
+
+# Resultado en JSON, con un resumen de lo que hace la estación (para otros programas)
+python3 tools/wx3cfg.py check --json mi_estacion.cfg
 ```
 
 **`check`** devuelve 0 si todo está bien, 1 si hay avisos y 2 si hay errores. El informe sale en español o en inglés según el idioma del sistema (o con `--lang es|en`). Comprueba, entre otras cosas:
@@ -127,7 +130,7 @@ Documentation and tools for the **Microsat WX3in1 Plus 2.0** APRS digipeater / I
 
 - **Manuals**: [English](docs/manual/wx3in1plus20_v113_manual_english.pdf) and [Spanish](docs/manual/wx3in1plus20_v113_manual_espanol.pdf). The original Microsat manual (15 March 2016) covers firmware v1.09. This revision adds GPS SmartBeaconing, beacon “Enable if” conditions, statistics upload, 20-entry callsign filter, 24-entry APRS-IS→RF filter, new telemetry sources, the Weather Underground fix and features that were never documented. It also adds a change history and a table of the Configurator value ranges, and fixes errors of the original (e.g. lat/long “YY.ZZ” are minutes and hundredths of a minute). Screenshots of the changed tabs are reconstructed from the form definitions inside the v1.13 Configurator executable.
 - **Quick start guide** (Spanish): [docs/guia-rapida](docs/guia-rapida/wx3in1plus20_guia_rapida.pdf).
-- **wx3cfg** (`tools/wx3cfg.py`, Python 3.8+, no dependencies): `check` validates a `.cfg` file with the Configurator v1.13 rules plus APRS good practice (APRS-IS passcode, WIDEn-N n≤2, foreign state paths, default passwords, feature conflicts). `fix` writes a corrected copy that keeps encoding, line endings and key order, so the official Configurator loads it with “Read from file”. `passcode` prints the APRS-IS passcode of a callsign, and `show` prints a file with combo values in words. Use `--lang en` for English output.
+- **wx3cfg** (`tools/wx3cfg.py`, Python 3.8+, no dependencies): `check` validates a `.cfg` file with the Configurator v1.13 rules plus APRS good practice (APRS-IS passcode, WIDEn-N n≤2, foreign state paths, default passwords, feature conflicts). `fix` writes a corrected copy that keeps encoding, line endings and key order, so the official Configurator loads it with “Read from file”. `passcode` prints the APRS-IS passcode of a callsign, and `show` prints a file with combo values in words. `check --json` gives a machine-readable result plus a summary of the station functions (used by S.A.T.-APRS+). Use `--lang en` for English output.
 - **EA template**: `config/wx3in1plus20_EA_plantilla.cfg`, the v1.13 default with WIDEn-N n≤2, SP path off, euro/rotate.aprs2.net, Spanish NTP pool, WIDE2-1 paths and no weather station, thermometer or GPS.
 - **Rebuild**: `cd manual-src && python3 build.py all` (Playwright + Chromium, pypdf, pdftotext, Carlito font). To redraw the reconstructed screenshots, extract the forms from your own copy of the Configurator with `tools/extract_forms.py`. The Configurator and firmware are **not included**: get them from Microsat.
 
